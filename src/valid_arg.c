@@ -15,7 +15,7 @@
 int valid_ext(char *filename)
 {
 	char *ext = ft_strrchr(filename, '.');
-	if (ext && !ft_strncmp(ext, ".ber", 5))
+	if (ext && !ft_strncmp(ext, ".cub", 5))
 		return 1;
 	return 0;
 }

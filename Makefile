@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/09 09:24:28 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/10 12:48:54 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC = $(SRC_DIR)main.c				\
 		$(SRC_DIR)valid_sprite.c	\
 		$(SRC_DIR)valid_rgb.c		\
 		$(SRC_DIR)valid_map.c		\
-		$(SRC_DIR)player_pos.c
+		$(SRC_DIR)player_pos.c		\
+		$(SRC_DIR)utils.c
 
 OBJ = $(SRC:.c=.o)
 
