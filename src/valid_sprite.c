@@ -24,73 +24,42 @@ int valid_coordinate(char *coordinate)
 	return 0;
 }
 
-int valid_folder(char *filename)
+int valid_folder(char *path)
 {
-	if (!ft_strcmp(filename, "sprites/"))
+	if (ft_strncmp(path, "./sprites/", 10) == 0)
 		return 1;
-	return 0;
+	return (printf("Error: Invalid folder for path: %s\n", path), 0);
 }
 
-int valid_file_exists(char *path)
-{
-	int fd;
-	
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		return 0;
-	close(fd);
-	return 1;
-}
+// MAKE THIS FOR LATER SO CAN PREVENT UNWANTED FILES
+
+// int valid_xpm(char *path)
+// {
+// 	if (ft_strcmp(path, ".xpm") == 0)
+// 		return 1;
+// 	return 0;
+// }
+
+// int valid_route(char *route)
+// {
+// 	(void)route;
+// }
 
 int valid_sprite(char *line)
 {
 	char **parts;
 	int valid;
-	
+	int i = 0;
+
+	line = skip_white_spaces(line);
 	parts = ft_split(line, ' ');
 	if (!parts)
 		return 0;
 	valid = 0;
-	if (parts[0] && parts[1] && !parts[2])
-	{
-		if (valid_coordinate(parts[0]))
-		{
-			if (valid_folder(parts[1]) && valid_file_exists(parts[1]))
-				valid = 1;
-		}
-	}
+	while (parts[i])
+		i++;
+	if (i == 2 && valid_coordinate(parts[0]) && valid_folder(parts[1]))
+		valid = 1;
 	free_arr(parts);
 	return valid;
-}
-
-int check_all_directions(char *input)
-{
-	char **lines;
-	int i;
-	int no_found, so_found, we_found, ea_found;
-	
-	lines = ft_split(input, '\n');
-	if (!lines)
-		return 0;
-
-	i = 0;
-	no_found = 0;
-	so_found = 0;
-	we_found = 0;
-	ea_found = 0;
-	while (lines[i])
-	{
-		if (!ft_strcmp(lines[i], "NO ") && valid_sprite(lines[i]))
-			no_found = 1;
-		else if (!ft_strcmp(lines[i], "SO ") && valid_sprite(lines[i]))
-			so_found = 1;
-		else if (!ft_strcmp(lines[i], "WE ") && valid_sprite(lines[i]))
-			we_found = 1;
-		else if (!ft_strcmp(lines[i], "EA ") && valid_sprite(lines[i]))
-			ea_found = 1;
-		i++;
-	}
-	
-	free_arr(lines);
-	return (no_found && so_found && we_found && ea_found);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 08:19:30 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/23 09:46:14 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/13 09:27:25 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strchr(const char *s, int c)
 {
 	char	*s_cpy;
 
+	if (!s)
+		return (NULL);
 	s_cpy = (char *)s;
 	while (*s_cpy)
 	{

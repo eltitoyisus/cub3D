@@ -18,7 +18,6 @@ void free_arr(char **arr)
 
 	if (!arr)
 		return;
-	
 	i = 0;
 	while (arr[i])
 	{
@@ -26,4 +25,9 @@ void free_arr(char **arr)
 		i++;
 	}
 	free(arr);
+}
+
+char *skip_white_spaces(char *line)
+{
+	return ft_strtrim(line, " \t\n\v\f\r");
 }

@@ -22,9 +22,7 @@ int valid_arg(char *filename);
 // VALID SPRITES
 int valid_coordinate(char *coordinate);
 int valid_folder(char *filename);
-int valid_file_exists(char *path);
 int valid_sprite(char *line);
-int check_all_directions(char *input);
 
 // VALID RGB
 int valid_value(char *str);
@@ -32,15 +30,15 @@ int valid_rgb(char *line);
 int valid_format(char *input);
 
 // VALID MAP
-// char	**create_visited(t_map map);
-// void	do_flood_fill(t_map map, int x, int y, char **visited);
-// int	check_boundaries(t_map map, char **visited);
-// int	flood_fill(t_map map);
-// t_map	parse_map_from_file(char *filename);
-// int	playable_map(t_map map);
-int	valid_map(char *filename);
-
+int	valid_player(char c);
+int valid_char(char c);
+void set_player(t_game *game, int x, int y, char dir);
+void flood_fill(char **grid, int x, int y, int width, int height);
+int	valid_map(t_game *game);
 
 // UTILS
 void	free_arr(char **arr);
-// void	free_visited(ch ar **visited, int height);
+char *skip_white_spaces(char *line);
+
+
+// EXEC

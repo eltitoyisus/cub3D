@@ -6,12 +6,12 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/10 12:48:54 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/13 11:26:28 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-FLAGS = -Werror -Wall -Wextra -g3
+FLAGS = -Werror -Wall -Wextra -g3 -lm
 NAME = cub3D
 RM = rm -rf
 SRC_DIR = src/
