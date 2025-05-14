@@ -94,6 +94,6 @@ C 225,30,0
 
 ## 👤 Author
 
-Project developed by [@eltitoyisus](https://github.com/eltitoyisus) (jramos-a) as part of the [42 Madrid](https://42.fr/) program.
+Project developed by [@eltitoyisus](https://github.com/eltitoyisus) (jramos-a)  [42 Madrid](https://42.fr/).
 
 ---
