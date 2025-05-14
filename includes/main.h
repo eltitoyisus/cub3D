@@ -30,15 +30,30 @@ int valid_rgb(char *line);
 int valid_format(char *input);
 
 // VALID MAP
+void	init_game(t_game *game);
 int	valid_player(char c);
 int valid_char(char c);
 void set_player(t_game *game, int x, int y, char dir);
-void flood_fill(char **grid, int x, int y, int width, int height);
-int	valid_map(t_game *game);
+int find_player_position(t_game *game);
+void map_cpy(char **src, char **dest, int width, int height);
+void flood_fill(t_game *game, char **grid, int x, int y, int width, int height, int *map_breached);
+int valid_map(t_game *game);
+
+// READ FILE
+int	process_config_line(char *clean_line, int fd, char *line):
+int parse_file_content(int fd, t_game *game, char *map_lines[1000]);
+int build_game_map(t_game *game, char **map_lines, int map_count);
+int validate_game_map(t_game *game);
+int is_valid_map_line(char *line);
+int read_file(char *filepath);
 
 // UTILS
 void	free_arr(char **arr);
 char *skip_white_spaces(char *line);
+void	init_game(t_game *game);
+int is_valid_map_line(char *line);
+int build_game_map(t_game *game, char **map_lines, int map_count);
+char *clean_line_str(char *line);
 
 
 // EXEC

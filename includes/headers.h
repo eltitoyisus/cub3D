@@ -15,6 +15,8 @@
 
 #include "main.h"
 #include "../libft/libft.h"
+#include "../minilibx/mlx.h"
+#include "../minilibx/mlx_int.h"
 
 //other libraries
 #include <stdio.h>
