@@ -14,10 +14,16 @@
 
 int	main(int argc, char **argv)
 {
+	t_mlx_game	game;
+
 	if (argc != 2)
 		return (printf("Error: invalid arg number\n"), 1);
 	if (read_file(argv[1]) != 0)
 		return (printf("❌ Mapa inválido\n"), 1);
-	printf("✅ Mapa cargado correctamente\n");
+	else
+	{
+		printf("✅ Mapa cargado correctamente\n");
+		ft_init(&game);
+	}
 	return (0);
 }

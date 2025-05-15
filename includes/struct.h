@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strutc.h                                           :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 08:55:11 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/09 08:55:11 by jramos-a         ###   ########.fr       */
+/*   Created: 2025/05/15 11:27:02 by jramos-a          #+#    #+#             */
+/*   Updated: 2025/05/15 11:27:10 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,20 @@ typedef struct s_map
 	int valid;
 } t_map;
 
+typedef struct s_player
+{
+	double pos_x;
+	double pos_y;
+	double dir_x;
+	double dir_y;
+	double plane_x;
+	double plane_y;
+} t_player;
+
 typedef struct s_game
 {
 	t_map map;
+	t_player player;
 	char *no_texture;
 	char *so_texture;
 	char *we_texture;
@@ -45,5 +56,12 @@ typedef struct s_game
 	int ceiling_g;
 	int ceiling_b;
 } t_game;
+
+typedef struct s_mlx_game
+{
+	t_map map;
+	void *mlx;
+	void *win;
+} t_mlx_game;
 
 #endif
