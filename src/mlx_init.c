@@ -20,8 +20,11 @@ int ft_init(t_mlx_game *game)
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3D");
 	if (!game->win)
 		ft_destroy(game->mlx);
-	return 0;
+	mlx_key_hook(game->win, key_handle(), &game);
+	mlx_mouse_hide(game.mlx, game.win);
+	mlx_mouse_move(game.mlx, game.win, WIDTH / 2, HEIGHT / 2);
 	mlx_loop(game->mlx);
+	return 0;
 }
 
 void ft_destroy(t_mlx_game *game)
