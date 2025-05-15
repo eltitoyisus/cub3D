@@ -24,6 +24,9 @@
 # define LOOK_RIGHT 65363
 # define LOOK_LEFT 65361
 
+#define MOVE_SPEED 0.1
+#define ROT_SPEED 0.05
+
 #include "main.h"
 #include "../libft/libft.h"
 #include "../minilibx/mlx.h"

@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:27:02 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/15 11:27:10 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:37:54 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_game
 typedef struct s_mlx_game
 {
 	t_map map;
+	t_game *game;
 	void *mlx;
 	void *win;
 } t_mlx_game;

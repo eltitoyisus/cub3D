@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/15 10:44:19 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/15 19:38:18 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC = $(SRC_DIR)main.c				\
 		$(SRC_DIR)save_params.c		\
 		$(SRC_DIR)read_file.c		\
 		$(SRC_DIR)mlx_init.c		\
-		$(SRC_DIR)key_binds.c
+		$(SRC_DIR)key_binds.c		\
+		$(SRC_DIR)convert_xpm.c
 
 OBJS = $(SRC:.c=.o)
 

@@ -77,6 +77,18 @@ void ft_destroy(t_mlx_game *game);
 
 // KEYBINDS
 int handle_exit(t_mlx_game *game);
-int ft_look(t_mlx_game *game);
-int ft_movement(t_mlx_game *game);
+int ft_look(int keycode, t_game *game);
+int ft_movement(int keycode, t_game *game);
 int key_handle(int keycode, void *param);
+
+// PLAYER MOVEMENT
+int is_wall(t_map *map, double x, double y);
+void move_forward(t_game *game);
+void move_backward(t_game *game);
+void move_left(t_game *game);
+void move_right(t_game *game);
+
+// CAMERA
+void rotate_left(t_game *game);
+void rotate_right(t_game *game);
+

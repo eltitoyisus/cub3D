@@ -14,27 +14,46 @@
 
 int handle_exit(t_mlx_game *game)
 {
-	return(ft_destroy(game->mlx), 1);
+	ft_destroy(game);
+	exit(0);
+	return 1;
 }
 
-// int ft_look(t_mlx_game *game)
-// {
+int ft_look(int keycode, t_game *game)
+{
+	if (keycode == LOOK_LEFT)
+		rotate_left(game);
+	else if (keycode == LOOK_RIGHT)
+		rotate_right(game);
+	return (0);
+}
 
-// }
+int ft_movement(int keycode, t_game *game)
+{
+	if (keycode == KEY_W)
+		move_forward(game);
+	else if (keycode == KEY_S)
+		move_backward(game);
+	else if (keycode == KEY_A)
+		move_left(game);
+	else if (keycode == KEY_D)
+		move_right(game);
+	return (0);
+}
 
-// int ft_movement(t_mlx_game *game)
-// {
+int key_handle(int keycode, void *param)
+{
+	t_mlx_game *mlx_game;
+	t_game *game;
 
-// }
+	mlx_game = (t_mlx_game *)param;
+	game = mlx_game->game;
+	if (keycode == LOOK_RIGHT || keycode == LOOK_LEFT)
+		ft_look(keycode, game);
+	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D)
+		ft_movement(keycode, game);
+	else if (keycode == KEY_ESC)
+		handle_exit(mlx_game);
+	return (0);
+}
 
-// int key_handle(int keycode, void *param)
-// {
-// 	(void)param;
-// 	if (keycode == LOOK_RIGHT || keycode == LOOK_LEFT)
-// 		ft_look();
-// 	else if(keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D)
-// 		ft_movement();
-// 	else if (keycode == KEY_ESC)
-// 		handle_exit();
-// 	return (0);
-// }
