@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MAIN_H
+# define MAIN_H
+
 #include "headers.h"
 #include "struct.h"
 
@@ -92,3 +95,8 @@ void move_right(t_game *game);
 void rotate_left(t_game *game);
 void rotate_right(t_game *game);
 
+// TEXTURES
+void load_xpm(t_mlx_game *game, t_texture *tex, char *path);
+void init_textures(t_mlx_game *game);
+
+#endif
