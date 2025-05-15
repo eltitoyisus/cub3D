@@ -15,10 +15,8 @@ int	mlx_int_anti_resize_win(t_xvar *xvar,Window win,int w,int h)
 {
   XSizeHints    hints;
   long		toto;
-
-  memset(&hints, 0, sizeof(hints)); // Initialize the structure
-  XGetWMNormalHints(xvar->display, win, &hints, &toto);
-  // XGetWMNormalHints(xvar->display,win,&hints,&toto);
+  
+  XGetWMNormalHints(xvar->display,win,&hints,&toto);
   hints.width = w;
   hints.height = h;
   hints.min_width = w;
