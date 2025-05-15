@@ -40,7 +40,7 @@ void flood_fill(t_game *game, char **grid, int x, int y, int width, int height, 
 int valid_map(t_game *game);
 
 // READ FILE
-int	process_config_line(char *clean_line, int fd, char *line):
+int	process_config_line(char *clean_line, int fd, char *line);
 int parse_file_content(int fd, t_game *game, char *map_lines[1000]);
 int build_game_map(t_game *game, char **map_lines, int map_count);
 int validate_game_map(t_game *game);
@@ -56,4 +56,27 @@ int build_game_map(t_game *game, char **map_lines, int map_count);
 char *clean_line_str(char *line);
 
 
+// SAVE PARAMS
+int save_floor(t_game *game, char *line);
+int save_ceiling(t_game *game, char *line);
+int save_rgb(t_game *game, char **lines);
+int save_textures(t_game *game, char **lines);
+int save_params(t_game *game, char **lines);
+
+// PLAYER POS
+void player_facing_north(t_game *game);
+void player_facing_south(t_game *game);
+void player_facing_east(t_game *game);
+void player_facing_west(t_game *game);
+int save_player_direction(t_game *game);
+
 // EXEC
+// GAME EXEC
+int ft_init(t_mlx_game *game);
+void ft_destroy(t_mlx_game *game);
+
+// KEYBINDS
+int handle_exit(t_mlx_game *game);
+int ft_look(t_mlx_game *game);
+int ft_movement(t_mlx_game *game);
+int key_handle(int keycode, void *param);
