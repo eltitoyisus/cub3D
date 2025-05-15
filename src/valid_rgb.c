@@ -58,22 +58,22 @@ int valid_format(char *input)
 	char **lines;
 	int i;
 	int valid_floor;
-	int valid_celing;
+	int valid_ceiling;
 
 	lines = ft_split(input, '\n');
 	if (!lines)
 		return 0;
 	i = 0;
 	valid_floor = 0;
-	valid_celing = 0;
+	valid_ceiling = 0;
 	while (lines[i])
 	{
 		if (lines[i][0] == 'F' && valid_rgb(lines[i]))
 			valid_floor = 1;
 		else if (lines[i][0] == 'C' && valid_rgb(lines[i]))
-			valid_celing = 1;
+			valid_ceiling = 1;
 		i++;
 	}
 	free_arr(lines);
-	return (valid_floor && valid_celing);
+	return (valid_floor && valid_ceiling);
 }
