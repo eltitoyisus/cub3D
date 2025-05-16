@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 12:45:11 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/14 12:45:11 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:25:17 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,16 @@ int	process_config_line(char *clean_line, int fd, char *line)
 	return (1);
 }
 
-int	parse_file_content(int fd, t_game *game, char *map_lines[1000])
+int parse_file_content(int fd, t_game *game, char *map_lines[1000])
 {
-	char	*line;
-	char	*clean_line;
-	int		map_count;
-	int		in_map_section;
+	char *line;
+	char *clean_line;
+	int map_count;
+	int in_map_section;
+	int config_lines_count = 0;
+	char *config_lines[10];
+	int i;
 
-	(void)game;
 	map_count = 0;
 	in_map_section = 0;
 	while ((line = get_next_line(fd)) != NULL)
@@ -54,6 +56,7 @@ int	parse_file_content(int fd, t_game *game, char *map_lines[1000])
 		{
 			if (!process_config_line(clean_line, fd, line))
 				return (-1);
+			config_lines[config_lines_count++] = ft_strdup(clean_line);
 		}
 		else if (is_valid_map_line(clean_line))
 		{
@@ -61,6 +64,22 @@ int	parse_file_content(int fd, t_game *game, char *map_lines[1000])
 			map_lines[map_count++] = ft_strdup(clean_line);
 		}
 		free(clean_line); free(line);
+	}
+	if (!save_params(game, config_lines))
+	{
+		i = 0;
+		while (i < config_lines_count)
+		{
+			free(config_lines[i]);
+			i++;
+		}
+		return (-1);
+	}
+	i = 0;
+	while (i < config_lines_count)
+	{
+		free(config_lines[i]);
+		i++;
 	}
 	return (map_count);
 }
@@ -125,24 +144,27 @@ int is_valid_map_line(char *line)
 	return (0);
 }
 
-int read_file(char *filepath)
+t_game *read_file(char *filepath)
 {
 	int		fd;
-	t_game	game;
+	t_game	*game;
 	char	*map_lines[1000];
 	int		map_count;
 
-	init_game(&game);
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return (NULL);
+	init_game(game);
 	fd = open(filepath, O_RDONLY);
 	if (fd == -1)
-		return (perror("Error opening file"), 1);
-	map_count = parse_file_content(fd, &game, map_lines);
+		return (free(game), NULL);
+	map_count = parse_file_content(fd, game, map_lines);
 	close(fd);
 	if (map_count <= 0)
-		return (1);
-	if (!build_game_map(&game, map_lines, map_count))
-		return (1);
-	if (!validate_game_map(&game))
-		return (1);
-	return (0);
+		return (free(game), NULL);
+	if (!build_game_map(game, map_lines, map_count))
+		return (free(game), NULL);
+	if (!validate_game_map(game))
+		return (free(game), NULL);
+	return (game);
 }

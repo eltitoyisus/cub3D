@@ -12,29 +12,6 @@
 
 #include "../includes/main.h"
 
-void	init_game(t_game *game)
-{
-	if (!game)
-		return;
-	game->map.grid = NULL;
-	game->map.width = 0;
-	game->map.height = 0;
-	game->map.player_pos.x = -1;
-	game->map.player_pos.y = -1;
-	game->map.player_dir = '\0';
-	game->map.valid = 0;
-	game->no_texture = NULL;
-	game->so_texture = NULL;
-	game->we_texture = NULL;
-	game->ea_texture = NULL;
-	game->floor_r = -1;
-	game->floor_g = -1;
-	game->floor_b = -1;
-	game->ceiling_r = -1;
-	game->ceiling_g = -1;
-	game->ceiling_b = -1;
-}
-
 int	valid_player(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');

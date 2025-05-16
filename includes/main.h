@@ -48,7 +48,7 @@ int parse_file_content(int fd, t_game *game, char *map_lines[1000]);
 int build_game_map(t_game *game, char **map_lines, int map_count);
 int validate_game_map(t_game *game);
 int is_valid_map_line(char *line);
-int read_file(char *filepath);
+t_game *read_file(char *filepath);
 
 // UTILS
 void	free_arr(char **arr);
@@ -98,5 +98,9 @@ void rotate_right(t_game *game);
 // TEXTURES
 void load_xpm(t_mlx_game *game, t_texture *tex, char *path);
 void init_textures(t_mlx_game *game);
+
+void raycasting(t_mlx_game *game);
+void init_structs(t_mlx_game *mlx_game, t_game **game);
+
 
 #endif

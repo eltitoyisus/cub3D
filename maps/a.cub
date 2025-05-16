@@ -3,8 +3,8 @@ EA ./sprites/wood.xpm
 SO ./sprites/wood.xpm
 WE ./sprites/wood.xpm
 
-C 35,19,73
-F 15,6,40
+C 255,0,255
+F 0,255,0
 
 111111111111111
 111111000111111
