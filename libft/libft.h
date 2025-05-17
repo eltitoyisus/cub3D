@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:21:26 by marvin            #+#    #+#             */
-/*   Updated: 2025/05/11 11:01:26 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/17 15:33:58 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-int     ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strcpy(char *dest, const char *src);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:44:36 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/15 10:44:36 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/17 16:17:36 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int ft_look(int keycode, t_game *game)
 
 int ft_movement(int keycode, t_game *game)
 {
+
 	if (keycode == KEY_W)
 		move_forward(game);
 	else if (keycode == KEY_S)

@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:32:00 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/16 11:06:55 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/17 15:52:05 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,24 @@ int save_rgb(t_game *game, char **lines)
 {
 	int i;
 
+	if (!game || !lines)
+		return (0);
+	
 	i = 0;
-	while (lines[i])
+	while (lines && lines[i])
 	{
-		if (lines[i][0] == 'F')
+		if (lines[i] && *lines[i])
 		{
-			if (!save_floor(game, lines[i]))
-				return (0);
-		}
-		else if (lines[i][0] == 'C')
-		{
-			if (!save_ceiling(game, lines[i]))
-				return (0);
+			if (lines[i][0] == 'F')
+			{
+				if (!save_floor(game, lines[i]))
+					return (0);
+			}
+			else if (lines[i][0] == 'C')
+			{
+				if (!save_ceiling(game, lines[i]))
+					return (0);
+			}
 		}
 		i++;
 	}
@@ -66,17 +72,34 @@ int save_textures(t_game *game, char **lines)
 {
 	int i;
 
+	if (!game || !lines)
+		return (0);
 	i = 0;
-	while (lines[i])
+	while (lines && lines[i])
 	{
-		if (lines[i][0] == 'N' && lines[i][1] == 'O')
-			game->no_texture = ft_strdup(lines[i] + 3);
-		else if (lines[i][0] == 'S' && lines[i][1] == 'O')
-			game->so_texture = ft_strdup(lines[i] + 3);
-		else if (lines[i][0] == 'W' && lines[i][1] == 'E')
-			game->we_texture = ft_strdup(lines[i] + 3);
-		else if (lines[i][0] == 'E' && lines[i][1] == 'A')
-			game->ea_texture = ft_strdup(lines[i] + 3);
+		if (lines[i] && ft_strlen(lines[i]) >= 2)
+		{
+			if (lines[i][0] == 'N' && lines[i][1] == 'O')
+			{
+				if (ft_strlen(lines[i]) >= 3)
+					game->no_texture = ft_strdup(lines[i] + 3);
+			}
+			else if (lines[i][0] == 'S' && lines[i][1] == 'O')
+			{
+				if (ft_strlen(lines[i]) >= 3)
+					game->so_texture = ft_strdup(lines[i] + 3);
+			}
+			else if (lines[i][0] == 'W' && lines[i][1] == 'E')
+			{
+				if (ft_strlen(lines[i]) >= 3)
+					game->we_texture = ft_strdup(lines[i] + 3);
+			}
+			else if (lines[i][0] == 'E' && lines[i][1] == 'A')
+			{
+				if (ft_strlen(lines[i]) >= 3)
+					game->ea_texture = ft_strdup(lines[i] + 3);
+			}
+		}
 		i++;
 	}
 	return (1);

@@ -19,7 +19,7 @@ int	valid_player(char c)
 
 int	valid_char(char c)
 {
-	return (c == '0' || c == '1' || c == ' ' || valid_player(c));
+	return (c == '0' || c == 'D' || c == '1' || c == ' ' || valid_player(c));
 }
 
 void	set_player(t_game *game, int x, int y, char dir)
@@ -53,13 +53,11 @@ int find_player_position(t_game *game)
 	return (0);
 }
 
-void	map_cpy(char **src, char **dest, int width, int height)
+void map_cpy(char **src, char **dest, int width, int height)
 {
 	int i = 0;
-	int j = 0;
-	(void)src;
-
-	dest = malloc(sizeof(char *) * height);
+	
+	dest = malloc(sizeof(char *) * (height + 1));
 	if (!dest)
 		return;
 	while (i < height)
@@ -74,10 +72,14 @@ void	map_cpy(char **src, char **dest, int width, int height)
 			}
 			free(dest);
 			return;
-			j++;
 		}
+		if (src && src[i])
+			ft_strcpy(dest[i], src[i]);
+		else
+			dest[i][0] = '\0';
 		i++;
 	}
+	dest[height] = NULL;
 }
 
 void flood_fill(t_game *game, char **grid, int x, int y, int width, int height, int *map_breached)
@@ -103,7 +105,7 @@ int valid_map(t_game *game)
 	char **grid = game->map.grid;
 	char **temp_grid;
 	int i = 0;
-	static int map_breached = 0;
+	int map_breached = 0;
 
 	if (!grid || width <= 0 || height <= 0)
 	{
@@ -133,12 +135,22 @@ int valid_map(t_game *game)
 	temp_grid[height] = NULL;
 	int x = game->map.player_pos.x;
 	int y = game->map.player_pos.y;
-	map_breached = 0;
+	
 	flood_fill(game, temp_grid, x, y, width, height, &map_breached);
+	
+	i = 0;
 	while (i < height)
-		free(temp_grid[i++]);
+	{
+		free(temp_grid[i]);
+		i++;
+	}
 	free(temp_grid);
+	
 	if (map_breached)
-		return (game->map.valid = 0, 0);
+	{
+		game->map.valid = 0;
+		return (0);
+	}
+	game->map.valid = 1;
 	return (1);
 }

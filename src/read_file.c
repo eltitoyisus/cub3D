@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 12:45:11 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/16 11:25:17 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/17 15:50:28 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int parse_file_content(int fd, t_game *game, char *map_lines[1000])
 	int map_count;
 	int in_map_section;
 	int config_lines_count = 0;
-	char *config_lines[10];
+	char *config_lines[10] = {NULL};
 	int i;
 
 	map_count = 0;

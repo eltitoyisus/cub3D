@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:31:17 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/16 12:50:29 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/17 16:28:59 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void move_left(t_game *game)
 
 	new_x = game->player.pos_x - game->player.plane_x * MOVE_SPEED;
 	new_y = game->player.pos_y - game->player.plane_y * MOVE_SPEED;
-	if (!is_wall(&game->map, new_x, game->player.pos_y))
-		game->player.pos_x = new_x;
 	if (!is_wall(&game->map, new_x, game->player.pos_y))
 		game->player.pos_x = new_x;
 	if (!is_wall(&game->map, game->player.pos_x, new_y))

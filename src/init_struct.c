@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:30:51 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/16 12:50:23 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/18 00:02:32 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,20 @@ void init_player(t_player *player)
 
 void init_game(t_game *game)
 {
-	init_map(&game->map);
-	init_player(&game->player);
 	game->no_texture = NULL;
 	game->so_texture = NULL;
 	game->we_texture = NULL;
 	game->ea_texture = NULL;
+	// game->door_open = NULL;
+	// game->door_close = NULL;
 	game->floor_r = -1;
 	game->floor_g = -1;
 	game->floor_b = -1;
 	game->ceiling_r = -1;
 	game->ceiling_g = -1;
 	game->ceiling_b = -1;
+	init_map(&game->map);
+	init_player(&game->player);
 }
 
 void init_texture(t_texture *texture)
@@ -97,6 +99,8 @@ void init_mlx_game(t_mlx_game *mlx_game)
 	init_texture(&mlx_game->so_tex);
 	init_texture(&mlx_game->we_tex);
 	init_texture(&mlx_game->ea_tex);
+	// init_texture(&mlx_game->door_open);
+	// init_texture(&mlx_game->door_close);
 	init_ray(&mlx_game->ray);
 }
 

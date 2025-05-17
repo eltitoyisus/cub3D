@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:02:59 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/16 00:02:59 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/18 00:01:51 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,9 @@ void draw_vertical_line(t_mlx_game *game, int x)
 		double step = 1.0 * current_texture->height / game->ray.line_height;
 		double tex_pos = (y - game->ray.draw_start) * step;
 		int tex_y = (int)tex_pos & (current_texture->height - 1);
-		if (current_texture && current_texture->addr)
+		if (current_texture && current_texture->addr && 
+			tex_x >= 0 && tex_x < current_texture->width && 
+			tex_y >= 0 && tex_y < current_texture->height)
 		{
 			char *pixel = current_texture->addr + (tex_y * current_texture->line_length + 
 				tex_x * (current_texture->bits_per_pixel / 8));

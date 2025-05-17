@@ -24,8 +24,8 @@
 # define LOOK_RIGHT 65363
 # define LOOK_LEFT 65361
 
-#define MOVE_SPEED 0.1
-#define ROT_SPEED 0.05
+#define MOVE_SPEED 0.3
+#define MOUSE_SPEED 0.1
 
 #include "main.h"
 #include "../libft/libft.h"

@@ -83,6 +83,9 @@ int handle_exit(t_mlx_game *game);
 int ft_look(int keycode, t_game *game);
 int ft_movement(int keycode, t_game *game);
 int key_handle(int keycode, void *param);
+int key_press(int keycode, void *param);
+int key_release(int keycode, void *param);
+int game_loop(t_game *g);
 
 // PLAYER MOVEMENT
 int is_wall(t_map *map, double x, double y);
@@ -91,16 +94,31 @@ void move_backward(t_game *game);
 void move_left(t_game *game);
 void move_right(t_game *game);
 
-// CAMERA
-void rotate_left(t_game *game);
-void rotate_right(t_game *game);
-
 // TEXTURES
 void load_xpm(t_mlx_game *game, t_texture *tex, char *path);
 void init_textures(t_mlx_game *game);
 
+// RAYCASTING
 void raycasting(t_mlx_game *game);
+void my_mlx_pixel_put(t_texture *texture, int x, int y, int color);
+void calculate_ray_position_and_direction(t_mlx_game *game, int x);
+void calculate_step_and_side_dist(t_mlx_game *game);
+void perform_dda(t_mlx_game *game);
+void calculate_wall_distance_and_height(t_mlx_game *game);
+void draw_vertical_line(t_mlx_game *game, int x);
+
 void init_structs(t_mlx_game *mlx_game, t_game **game);
 
+// MOUSE
+int init_mouse(t_mlx_game *mlx_game);
+void rotate_left(t_game *game);
+void rotate_right(t_game *game);
+int handle_mouse(int x, int y, t_mlx_game *mlx_game);
+
+// DOORS
+void load_door(t_mlx_game *game);
+int is_near_door(t_game *game, int map_x, int map_y);
+void check_door_interaction(t_mlx_game *game);
+int handle_doors(t_mlx_game *game);
 
 #endif

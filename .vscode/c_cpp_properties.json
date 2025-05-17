@@ -1,17 +1,16 @@
 {
-    "configurations": [
-        {
-            "name": "Linux",
-            "includePath": [
-                "${workspaceFolder}/**",
-                "${workspaceFolder}/includes",
-                "${workspaceFolder}/libft"
-            ],
-            "defines": [],
-            "compilerPath": "/usr/bin/gcc",
-            "cStandard": "c99",
-            "intelliSenseMode": "linux-gcc-x64"
-        }
-    ],
-    "version": 4
+  "configurations": [
+    {
+      "name": "windows-gcc-x64",
+      "includePath": [
+        "${workspaceFolder}/**"
+      ],
+      "defines": [],
+      "compilerPath": "gcc",
+      "cStandard": "${default}",
+      "intelliSenseMode": "windows-gcc-x64",
+      "cppStandard": "${default}"
+    }
+  ],
+  "version": 4
 }

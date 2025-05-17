@@ -22,11 +22,13 @@ int main(int argc, char **argv)
 	init_structs(&mlx_game, &game);
 	t_game *game_ptr = read_file(argv[1]);
 	if (game_ptr == NULL)
-		return (printf("❌ Mapa inválido\n"), 1);
+		return (1);
+	if (!find_player_position(game_ptr) || !save_player_direction(game_ptr))
+		return (1);
 	mlx_game.game = game_ptr;
 	printf("✅ Mapa cargado correctamente\n");
 	mlx_game.map = game_ptr->map;
 	if (ft_init(&mlx_game) != 0)
-		return 1;	
+		return 1;
 	return 0;
 }

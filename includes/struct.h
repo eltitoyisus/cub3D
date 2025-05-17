@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:27:02 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/16 12:50:35 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/18 00:03:00 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_game
 	char *so_texture;
 	char *we_texture;
 	char *ea_texture;
+	// char *door_open;
+	// char *door_close;
 	int floor_r;
 	int floor_g;
 	int floor_b;
@@ -90,7 +92,6 @@ typedef struct s_ray
 	int draw_end;
 } t_ray;
 
-
 typedef struct s_mlx_game
 {
 	t_map		map;
@@ -102,6 +103,8 @@ typedef struct s_mlx_game
 	t_texture	so_tex;
 	t_texture	we_tex;
 	t_texture	ea_tex;
+	t_texture	door_open;
+	t_texture	door_close;
 	t_ray		ray;
 } t_mlx_game;
 

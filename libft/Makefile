@@ -40,6 +40,7 @@ SRC = ft_isalpha.c	\
 	ft_putstr_fd.c	\
 	ft_putendl_fd.c	\
 	ft_strcmp.c		\
+	ft_strcpy.c		\
 	get_next_line.c \
 	get_next_line_utils.c
 

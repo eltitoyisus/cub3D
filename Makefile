@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/16 12:18:37 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/17 23:32:11 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ SRC = $(SRC_DIR)main.c				\
 		$(SRC_DIR)mlx_init.c		\
 		$(SRC_DIR)key_binds.c		\
 		$(SRC_DIR)convert_xpm.c		\
-		$(SRC_DIR)raycasting.c
+		$(SRC_DIR)raycasting.c		\
+		$(SRC_DIR)minimap.c			\
+		$(SRC_DIR)door.c
 
 OBJS = $(SRC:.c=.o)
 
