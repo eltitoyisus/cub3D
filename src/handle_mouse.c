@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:31:37 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/17 22:33:00 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:29:36 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ int init_mouse(t_mlx_game *mlx_game)
 		return (0);
 	mlx_mouse_hide(mlx_game->mlx, mlx_game->win);
 	mlx_mouse_move(mlx_game->mlx, mlx_game->win, WIDTH / 2, HEIGHT / 2);
+	return (1);
+}
+
+int toggle_mouse_visibility(t_mlx_game *mlx_game, int show)
+{
+	if (!mlx_game || !mlx_game->mlx || !mlx_game->win)
+		return (0);
+	if (show)
+		mlx_mouse_show(mlx_game->mlx, mlx_game->win);
+	else
+		mlx_mouse_hide(mlx_game->mlx, mlx_game->win);
 	return (1);
 }
 
@@ -50,9 +61,17 @@ void rotate_right(t_game *game)
 int handle_mouse(int x, int y, t_mlx_game *mlx_game)
 {
 	t_game *game;
-	(void)y;
+	int mouse_visible;
 
+	mouse_visible = 0;
 	game = mlx_game->game;
+	if (y > HEIGHT - 20)
+	{
+		mouse_visible = !mouse_visible;
+		toggle_mouse_visibility(mlx_game, mouse_visible);
+		mlx_mouse_move(mlx_game->mlx, mlx_game->win, WIDTH / 2, HEIGHT / 2);
+		return 0;
+	}
 	if (x < WIDTH / 2)
 	{
 		rotate_left(game);

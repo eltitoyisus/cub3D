@@ -27,6 +27,8 @@
 #define MOVE_SPEED 0.3
 #define MOUSE_SPEED 0.1
 
+#define DOOR_DISTANCE 20
+
 #include "main.h"
 #include "../libft/libft.h"
 #include "../minilibx/mlx.h"

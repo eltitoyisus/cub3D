@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:02:59 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/18 00:01:51 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:02:23 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ void	perform_dda(t_mlx_game *game)
 			game->ray.map_x < game->map.width && 
 			game->map.grid[game->ray.map_y][game->ray.map_x] == '1')
 			game->ray.hit = 1;
+		if (game->ray.map_y >= 0 && game->ray.map_x >= 0 && 
+			game->ray.map_y < game->map.height && 
+			game->ray.map_x < game->map.width && 
+			game->map.grid[game->ray.map_y][game->ray.map_x] == 'D')
+			game->ray.hit = 1;
 	}
 }
 
@@ -128,7 +133,14 @@ void draw_vertical_line(t_mlx_game *game, int x)
 	while (y < game->ray.draw_end)
 	{
 		t_texture *current_texture;
-		if (game->ray.side == 0)
+		if (game->map.grid[game->ray.map_y][game->ray.map_x] == 'D')
+		{
+			if (game->door_toggle)
+				current_texture = &game->door_open;
+			else
+				current_texture = &game->door_close;
+		}
+		else if (game->ray.side == 0)
 		{
 			if (game->ray.step_x > 0)
 				current_texture = &game->ea_tex;

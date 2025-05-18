@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 10:38:42 by marvin            #+#    #+#             */
-/*   Updated: 2024/10/22 12:20:24 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/18 16:14:18 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//verifica si esta el caracter en set
 static int	ft_set(char c, const char *set)
 {
 	while (*set)

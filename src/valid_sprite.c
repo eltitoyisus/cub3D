@@ -50,16 +50,21 @@ int valid_sprite(char *line)
 	char **parts;
 	int valid;
 	int i = 0;
+	char *trimmed_line;
 
-	line = skip_white_spaces(line);
-	parts = ft_split(line, ' ');
+	trimmed_line = skip_white_spaces(line);
+	parts = ft_split(trimmed_line, ' ');
 	if (!parts)
+	{
+		free(trimmed_line);
 		return 0;
+	}
 	valid = 0;
 	while (parts[i])
 		i++;
 	if (i == 2 && valid_coordinate(parts[0]) && valid_folder(parts[1]))
 		valid = 1;
 	free_arr(parts);
+	free(trimmed_line);
 	return valid;
 }

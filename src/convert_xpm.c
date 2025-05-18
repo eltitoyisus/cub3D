@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:38:20 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/17 12:43:40 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/18 16:50:47 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	init_textures(t_mlx_game *game)
 	load_xpm(game, &game->so_tex, game->game->so_texture);
 	load_xpm(game, &game->we_tex, game->game->we_texture);
 	load_xpm(game, &game->ea_tex, game->game->ea_texture);
+	load_door(game);
 }

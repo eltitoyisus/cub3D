@@ -38,7 +38,7 @@ int	valid_player(char c);
 int valid_char(char c);
 void set_player(t_game *game, int x, int y, char dir);
 int find_player_position(t_game *game);
-void map_cpy(char **src, char **dest, int width, int height);
+void map_cpy(char **src, char ***dest, int width, int height);
 void flood_fill(t_game *game, char **grid, int x, int y, int width, int height, int *map_breached);
 int valid_map(t_game *game);
 

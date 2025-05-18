@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/17 23:32:11 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/18 19:36:31 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,10 @@ fclean: clean
 
 re: fclean all
 
-v: re
-	@valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME)
+v:
+	@valgrind --suppressions=mlx.supp --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME) maps/$(filter-out v,$(MAKECMDGOALS))
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re v $(filter-out v clean fclean re all,$(MAKECMDGOALS))
+
+%:
+	@:

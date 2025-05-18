@@ -12,49 +12,47 @@
 
 #include "../includes/main.h"
 
-// #define DOOR_DISTANCE 2.0
+void load_door(t_mlx_game *game)
+{
+	load_xpm(game, &game->door_close, "./sprites/door_close.xpm");
+	if (game->door_close.img_ptr)
+		printf("Door closed\n");
+	else
+		printf("Fail load texture\n");
+	load_xpm(game, &game->door_open, "./sprites/door_open.xpm");
+}
 
-// void load_door(t_mlx_game *game)
-// {
-// 	game->game->door_open = "./sprites/door_open.xpm";
-// 	game->game->door_close = "./sprites/door_close.xpm";
-// 	load_xpm(game, &game->door_open, game->game->door_open);
-// 	load_xpm(game, &game->door_close, game->game->door_close);
-// }
+int is_near_door(t_game *game, int map_x, int map_y)
+{
+	double distance;
+	double dx;
+	double dy;
 
-// int is_near_door(t_game *game, int map_x, int map_y)
-// {
-// 	double distance;
-// 	double dx;
-// 	double dy;
+	dx = game->player.pos_x - (map_x + 0.5);
+	dy = game->player.pos_y - (map_y + 0.5);
+	distance = sqrt(dx * dx + dy * dy);
+	return (distance < DOOR_DISTANCE);
+}
 
-// 	dx = game->player.pos_x - (map_x + 0.5);
-// 	dy = game->player.pos_y - (map_y + 0.5);
-// 	distance = sqrt(dx * dx + dy * dy);
-// 	return (distance < DOOR_DISTANCE);
-// }
+void check_door_interaction(t_mlx_game *game)
+{
+	int map_x, map_y;
 
-// void check_door_interaction(t_mlx_game *game)
-// {
-// 	t_mlx_game *current_texture;
+	if (!game || !game->game)
+		return;
+	map_x = (int)game->game->player.pos_x;
+	map_y = (int)game->game->player.pos_y;
+	if (map_y < 0 || map_x < 0 || map_y >= game->map.height || map_x >= game->map.width)
+		return;
+	if (game->map.grid[map_y][map_x] == 'D')
+	{
+		if (is_near_door(game->game, map_x, map_y))
+			game->door_toggle = !game->door_toggle;
+	}
+}
 
-// 	int map_x = (int)game->player.pos_x;
-// 	int map_y = (int)game->player.pos_y;
-// 	if (game->map.grid[map_y][map_x] == 'D')
-// 	{
-// 		if (is_near_door(game, map_x, map_y))
-// 		{
-// 			if (game->door_open.img_ptr)
-// 				current_texture = &game->door_open;
-// 			else
-// 				current_texture = &game->door_close;
-// 			load_xpm(game, current_texture, current_texture->img_ptr);
-// 		}
-// 	}
-// }
-
-// int handle_doors(t_mlx_game *game)
-// {
-// 	check_door_interaction(game);
-// 	return (0);
-// }
+int handle_doors(t_mlx_game *game)
+{
+	check_door_interaction(game);
+	return (0);
+}

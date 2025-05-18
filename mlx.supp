@@ -1,0 +1,570 @@
+
+{
+   XCB write uninitialised padding
+   Memcheck:Param
+   writev(vector[0])
+   fun:writev
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+}
+
+{
+   X11_Xcursor_leak1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_XrmInternalStringToQuark
+   fun:XrmInitialize
+   ...
+   fun:mlx_mouse_hide
+}
+
+{
+   X11_Xcursor_leak2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:_XrmInternalStringToQuark
+   fun:XrmInitialize
+   ...
+   fun:mlx_mouse_hide
+}
+
+{
+   dlopen_leak1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_check_map_versions
+   fun:dl_open_worker_begin
+   ...
+}
+
+{
+   dlopen_leak2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   ...
+}
+
+{
+   dlopen_leak3
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   ...
+}
+
+{
+   XCB_writev_uninit
+   Memcheck:Param
+   writev(vector[...])
+   fun:writev
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+}
+
+{
+   X11_XGetDefault_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:XGetDefault
+   ...
+}
+
+{
+   XCB write uninitialised padding
+   Memcheck:Param
+   writev(vector[0])
+   fun:writev
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+}
+
+{
+   X11_Xcursor_leak1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_XrmInternalStringToQuark
+   fun:XrmInitialize
+   ...
+   fun:mlx_mouse_hide
+}
+
+{
+   X11_Xcursor_leak2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:_XrmInternalStringToQuark
+   fun:XrmInitialize
+   ...
+   fun:mlx_mouse_hide
+}
+
+{
+   dlopen_leak1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_check_map_versions
+   fun:dl_open_worker_begin
+   ...
+}
+
+{
+   dlopen_leak2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   ...
+}
+
+{
+   dlopen_leak3
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   ...
+}
+
+{
+   XCB_writev_uninit
+   Memcheck:Param
+   writev(vector[...])
+   fun:writev
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so*
+}
+
+{
+   X11_XGetDefault_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:XGetDefault
+   ...
+}
+
+{
+   dl_load_cache_lookup_strdup
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   ...
+}
+
+{
+   dl_new_object_malloc
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_new_object
+   ...
+}
+
+{
+   dl_deps_map_object_strdup
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   fun:openaux
+   ...
+}
+
+{
+   dl_deps_new_object
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   ...
+}
+
+# Supresión de uso de valor no inicializado en ft_strlen y ft_strjoin
+{
+   Memcheck_UninitValue_ft_strlen
+   Memcheck:Cond
+   fun:ft_strlen
+   fun:ft_strjoin
+   fun:ft_readndfree
+   fun:get_next_line
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   Memcheck_UninitValue_ft_strjoin
+   Memcheck:Cond
+   fun:ft_strjoin
+   fun:ft_readndfree
+   fun:get_next_line
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+# Supresiones de bloques still reachable en ft_strdup y save_textures
+{
+   Memcheck_StillReachable_ft_strdup_85
+   Memcheck:Leak
+   fun:malloc
+   fun:ft_strdup
+   fun:save_textures
+   fun:save_params
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   Memcheck_StillReachable_ft_strdup_100
+   Memcheck:Leak
+   fun:malloc
+   fun:ft_strdup
+   fun:save_textures
+   fun:save_params
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   Memcheck_StillReachable_ft_strdup_90
+   Memcheck:Leak
+   fun:malloc
+   fun:ft_strdup
+   fun:save_textures
+   fun:save_params
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   Memcheck_StillReachable_ft_strdup_95
+   Memcheck:Leak
+   fun:malloc
+   fun:ft_strdup
+   fun:save_textures
+   fun:save_params
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+# Supresión de bloque still reachable en build_game_map
+{
+   Memcheck_StillReachable_build_game_map
+   Memcheck:Leak
+   fun:malloc
+   fun:build_game_map
+   fun:read_file
+   fun:main
+}
+
+# Supresión de bloque still reachable en init_structs
+{
+   Memcheck_StillReachable_init_structs
+   Memcheck:Leak
+   fun:malloc
+   fun:init_structs
+   fun:main
+}
+
+# Supresión de bloque still reachable en read_file
+{
+   Memcheck_StillReachable_read_file
+   Memcheck:Leak
+   fun:malloc
+   fun:read_file
+   fun:main
+}
+
+# Supresión para strdup en _dl_load_cache_lookup (loss record 5)
+{
+   Memcheck_StillReachable_dl_strdup_5
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   ...
+}
+
+# Supresión para _dl_new_object (loss record 6)
+{
+   Memcheck_StillReachable_dl_new_object_6
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   ...
+}
+
+# Supresión para strdup en dl-deps (loss record 8)
+{
+   Memcheck_StillReachable_dl_strdup_deps_8
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   fun:openaux
+   ...
+}
+
+# Supresión para _dl_new_object en dl-deps (loss record 9)
+{
+   Memcheck_StillReachable_dl_new_object_deps_9
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   ...
+}
+
+# Supresión para ft_strdup desde parse_file_content (loss record 13)
+{
+   Memcheck_StillReachable_ft_strdup_parse_file_content
+   Memcheck:Leak
+   fun:malloc
+   fun:ft_strdup
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   writev(vector[0])
+   fun:writev
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+   fun:xcb_writev
+   fun:_XSend
+   fun:_XReadEvents
+   fun:XWindowEvent
+   fun:mlx_int_wait_first_expose
+   fun:mlx_new_window
+   fun:ft_init
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:ft_strlen
+   fun:ft_strjoin
+   fun:ft_readndfree
+   fun:get_next_line
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   dynamic_linker_strdup_578
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+
+{
+   dynamic_linker_new_object_578
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+
+{
+   dynamic_linker_strdup_deps_638
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+
+{
+   dynamic_linker_new_object_deps_638
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+
+{
+   dl_strdup_dlopen_doit
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+
+{
+   dl_new_object_dlopen_doit
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+
+{
+   dl_strdup_deps_dlopen
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+
+{
+   dl_new_object_deps_dlopen
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+
+{
+   x11_writev_uninit
+   Memcheck:Param
+   writev(vector[0])
+   fun:writev
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so.*
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so.*
+   fun:xcb_writev
+   fun:_XSend
+   fun:_XReadEvents
+   fun:XWindowEvent
+   ...
+}
+
+{
+   x11_conditional_jump
+   Memcheck:Cond
+   fun:__strlen_avx2
+   fun:_XSend
+   ...
+}
+
+

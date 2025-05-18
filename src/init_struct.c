@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:30:51 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/18 00:02:32 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:03:49 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void init_game(t_game *game)
 	game->so_texture = NULL;
 	game->we_texture = NULL;
 	game->ea_texture = NULL;
-	// game->door_open = NULL;
-	// game->door_close = NULL;
 	game->floor_r = -1;
 	game->floor_g = -1;
 	game->floor_b = -1;
@@ -58,7 +56,10 @@ void init_game(t_game *game)
 
 void init_texture(t_texture *texture)
 {
+	if (!texture)
+		return;
 	texture->img_ptr = NULL;
+	texture->addr = NULL;
 	texture->width = 0;
 	texture->height = 0;
 	texture->bits_per_pixel = 0;
@@ -95,12 +96,13 @@ void init_mlx_game(t_mlx_game *mlx_game)
 	mlx_game->mlx = NULL;
 	mlx_game->win = NULL;
 	mlx_game->img.img_ptr = NULL;
+	mlx_game->door_toggle = 0;
 	init_texture(&mlx_game->no_tex);
 	init_texture(&mlx_game->so_tex);
 	init_texture(&mlx_game->we_tex);
 	init_texture(&mlx_game->ea_tex);
-	// init_texture(&mlx_game->door_open);
-	// init_texture(&mlx_game->door_close);
+	init_texture(&mlx_game->door_open);
+	init_texture(&mlx_game->door_close);
 	init_ray(&mlx_game->ray);
 }
 
