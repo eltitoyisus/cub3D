@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/18 19:36:31 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/19 09:38:01 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ SRC = $(SRC_DIR)main.c				\
 		$(SRC_DIR)key_binds.c		\
 		$(SRC_DIR)convert_xpm.c		\
 		$(SRC_DIR)raycasting.c		\
-		$(SRC_DIR)minimap.c			\
 		$(SRC_DIR)door.c
 
 OBJS = $(SRC:.c=.o)
@@ -62,6 +61,7 @@ fclean: clean
 	@ cd libft && make fclean
 
 re: fclean all
+	@clear
 
 v:
 	@valgrind --suppressions=mlx.supp --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME) maps/$(filter-out v,$(MAKECMDGOALS))

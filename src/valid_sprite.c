@@ -26,24 +26,12 @@ int valid_coordinate(char *coordinate)
 
 int valid_folder(char *path)
 {
-	if (ft_strncmp(path, "./sprites/", 10) == 0)
+	if (ft_strncmp(path, "./sprites/", 10) == 0 
+		|| ft_strncmp(path, "sprites/", 8) == 0)
 		return 1;
+	else
 	return (printf("Error: Invalid folder for path: %s\n", path), 0);
 }
-
-// MAKE THIS FOR LATER SO CAN PREVENT UNWANTED FILES
-
-// int valid_xpm(char *path)
-// {
-// 	if (ft_strcmp(path, ".xpm") == 0)
-// 		return 1;
-// 	return 0;
-// }
-
-// int valid_route(char *route)
-// {
-// 	(void)route;
-// }
 
 int valid_sprite(char *line)
 {

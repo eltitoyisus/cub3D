@@ -6,13 +6,13 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 12:45:11 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/17 15:50:28 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/19 09:25:31 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/main.h"
 
-int	process_config_line(char *clean_line, int fd, char *line)
+int process_config_line(char *clean_line, int fd, char *line)
 {
 	if (clean_line[0] == 'F' || clean_line[0] == 'C')
 	{
@@ -30,7 +30,12 @@ int	process_config_line(char *clean_line, int fd, char *line)
 		|| !ft_strncmp(clean_line, "EA ", 3))
 	{
 		if (!valid_sprite(clean_line))
+		{
+			free(clean_line);
+			free(line);
+			close(fd);
 			return (0);
+		}
 	}
 	return (1);
 }
@@ -49,7 +54,11 @@ int parse_file_content(int fd, t_game *game, char *map_lines[1000])
 	in_map_section = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
+		if (!line)
+			return 0;
 		clean_line = ft_strtrim(line, "\n");
+		if (!clean_line)
+			return 0;
 		if (!in_map_section && (clean_line[0] == 'N' || clean_line[0] == 'S' || 
 			clean_line[0] == 'E' || clean_line[0] == 'W' || 
 			clean_line[0] == 'F' || clean_line[0] == 'C'))

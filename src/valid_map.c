@@ -111,7 +111,7 @@ void flood_fill(t_game *game, char **grid, int x, int y, int width, int height, 
 		*map_breached = 1;
 		return;
 	}
-	if (grid[y][x] == '1' || grid[y][x] == 'V' || grid[y][x] == 'D')
+	if (grid[y][x] == '1' || grid[y][x] == 'V')
 		return;
 	grid[y][x] = 'V';
 	flood_fill(game, grid, x + 1, y, width, height, map_breached);

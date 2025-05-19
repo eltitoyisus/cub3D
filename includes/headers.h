@@ -13,8 +13,8 @@
 #ifndef HEADERS_H
 # define HEADERS_H
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 2000
+# define HEIGHT 1300
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -24,10 +24,10 @@
 # define LOOK_RIGHT 65363
 # define LOOK_LEFT 65361
 
-#define MOVE_SPEED 0.3
-#define MOUSE_SPEED 0.1
+#define MOVE_SPEED 0.2
+#define MOUSE_SPEED 0.02
 
-#define DOOR_DISTANCE 20
+#define DOOR_DISTANCE 2
 
 #include "main.h"
 #include "../libft/libft.h"
