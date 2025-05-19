@@ -36,19 +36,38 @@ int is_near_door(t_game *game, int map_x, int map_y)
 
 void check_door_interaction(t_mlx_game *game)
 {
-	int map_x, map_y;
+	int x, y;
+	int player_x, player_y;
+	bool found_nearby_door = false;
 
 	if (!game || !game->game)
 		return;
-	map_x = (int)game->game->player.pos_x;
-	map_y = (int)game->game->player.pos_y;
-	if (map_y < 0 || map_x < 0 || map_y >= game->map.height || map_x >= game->map.width)
-		return;
-	if (game->map.grid[map_y][map_x] == 'D')
+	player_x = (int)game->game->player.pos_x;
+	player_y = (int)game->game->player.pos_y;
+	y = player_y - 1.75;
+	while (y <= player_y + 1.75)
 	{
-		if (is_near_door(game->game, map_x, map_y))
-			game->door_toggle = !game->door_toggle;
+		x = player_x - 1.75;
+		while (x <= player_x + 1.75)
+		{
+			if (y >= 0 && x >= 0 && y < game->map.height && x < game->map.width)
+			{
+				if (game->map.grid[y][x] == 'D')
+				{
+					if (is_near_door(game->game, x, y))
+					{
+						found_nearby_door = true;
+						break;
+					}
+				}
+			}
+			x++;
+		}
+		if (found_nearby_door)
+			break;
+		y++;
 	}
+	game->door_toggle = found_nearby_door;
 }
 
 int handle_doors(t_mlx_game *game)

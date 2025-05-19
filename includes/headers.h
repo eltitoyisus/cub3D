@@ -13,8 +13,11 @@
 #ifndef HEADERS_H
 # define HEADERS_H
 
-# define WIDTH 2000
-# define HEIGHT 1300
+// # define WIDTH 2000
+// # define HEIGHT 1300
+
+# define WIDTH 1080
+# define HEIGHT 720
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -24,27 +27,31 @@
 # define LOOK_RIGHT 65363
 # define LOOK_LEFT 65361
 
-#define MOVE_SPEED 0.2
-#define MOUSE_SPEED 0.02
+# define MOVE_SPEED 0.2
+# define MOUSE_SPEED 0.02
 
-#define DOOR_DISTANCE 2
+# define DOOR_DISTANCE 1.75
 
-#include "main.h"
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-#include "../minilibx/mlx_int.h"
+// XPM SIZE
+// 512 512
+// 1024 1024
+
+# include "main.h"
+# include "../libft/libft.h"
+# include "../minilibx/mlx.h"
+# include "../minilibx/mlx_int.h"
 
 //other libraries
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <signal.h>
-#include <string.h>
-#include <stdbool.h>
-#include <math.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <signal.h>
+# include <string.h>
+# include <stdbool.h>
+# include <math.h>
 
 #endif

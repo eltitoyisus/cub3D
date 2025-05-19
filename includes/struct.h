@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:27:02 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/18 19:03:30 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/19 11:27:06 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,47 +17,47 @@
 
 typedef struct s_pos
 {
-	int x;
-	int y;
-} t_pos;
+	int	x;
+	int	y;
+}	t_pos;
 
 typedef struct s_map
 {
-	char **grid;
-	int width;
-	int height;
-	t_pos player_pos;
-	char player_dir;
-	int valid;
-} t_map;
+	char	**grid;
+	int		width;
+	int		height;
+	t_pos	player_pos;
+	char	player_dir;
+	int		valid;
+}	t_map;
 
 typedef struct s_player
 {
-	double pos_x;
-	double pos_y;
-	double dir_x;
-	double dir_y;
-	double plane_x;
-	double plane_y;
-} t_player;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}	t_player;
 
 typedef struct s_game
 {
-	t_map map;
-	t_player player;
-	char *no_texture;
-	char *so_texture;
-	char *we_texture;
-	char *ea_texture;
-	char *door_open;
-	char *door_close;
-	int floor_r;
-	int floor_g;
-	int floor_b;
-	int ceiling_r;
-	int ceiling_g;
-	int ceiling_b;
-} t_game;
+	t_map		map;
+	t_player	player;
+	char		*no_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*ea_texture;
+	char		*door_open;
+	char		*door_close;
+	int			floor_r;
+	int			floor_g;
+	int			floor_b;
+	int			ceiling_r;
+	int			ceiling_g;
+	int			ceiling_b;
+}	t_game;
 
 typedef struct s_texture
 {
@@ -68,29 +68,29 @@ typedef struct s_texture
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-} t_texture;
+}	t_texture;
 
 typedef struct s_ray
 {
-	double pos_x;
-	double pos_y;
-	double dir_x;
-	double dir_y;
-	int map_x;
-	int map_y;
-	double delta_dist_x;
-	double delta_dist_y;
-	double side_dist_x;
-	double side_dist_y;
-	int step_x;
-	int step_y;
-	int hit;
-	int side;
-	double perp_wall_dist;
-	int line_height;
-	int draw_start;
-	int draw_end;
-} t_ray;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_ray;
 
 typedef struct s_mlx_game
 {
@@ -107,6 +107,6 @@ typedef struct s_mlx_game
 	t_texture	door_close;
 	int			door_toggle;
 	t_ray		ray;
-} t_mlx_game;
+}	t_mlx_game;
 
 #endif
