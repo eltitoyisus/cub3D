@@ -2,6 +2,7 @@
 
 ![cub3D](https://img.shields.io/badge/42-Project-blue)
 ![Language](https://img.shields.io/badge/C-100%25-blue)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/eltitoyisus/cub3D)
 
 **cub3D** is a 3D graphics project developed as part of the 42 School curriculum. It uses **raycasting** techniques to render a pseudo-3D world from a 2D map, inspired by the classic game *Wolfenstein 3D*.
 
