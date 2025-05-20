@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/19 19:18:13 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/20 08:29:12 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ libft/libft.a:
 	@$(MAKE) -C libft
 
 minilibx/libmlx.a:
+	@chmod 777 ./minilibx/configure
 	@$(MAKE) -C minilibx
 
 $(NAME): $(OBJS) libft/libft.a minilibx/libmlx.a
