@@ -19,7 +19,6 @@ void load_door(t_mlx_game *game)
 		printf("Door closed\n");
 	else
 		printf("Fail load texture\n");
-	load_xpm(game, &game->door_open, "./sprites/door_open.xpm");
 }
 
 int is_near_door(t_game *game, int map_x, int map_y)
@@ -57,6 +56,8 @@ void check_door_interaction(t_mlx_game *game)
 					if (is_near_door(game->game, x, y))
 					{
 						found_nearby_door = true;
+						game->map.grid[y][x] = '0';
+						game->door_toggle = true;
 						break;
 					}
 				}
@@ -67,7 +68,8 @@ void check_door_interaction(t_mlx_game *game)
 			break;
 		y++;
 	}
-	game->door_toggle = found_nearby_door;
+	if (!found_nearby_door)
+		game->door_toggle = false;
 }
 
 int handle_doors(t_mlx_game *game)

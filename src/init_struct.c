@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:30:51 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/19 19:29:15 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/20 09:07:48 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void init_pos(t_pos *pos)
 
 void init_minimap(t_minimap *minimap)
 {
-	minimap->square_size = 10;
+	minimap->square_size = 20;
 	minimap->width = 0;
 	minimap->height = 0;
 }

@@ -37,18 +37,22 @@ void draw_player(t_mlx_game *game, int x, int y)
 {
 	int i;
 	int j;
-	int size;
-
-	(void)size;
-	size = game->minimap.square_size;
-	i = -2;
-	while (i < 3)
+	int radius;
+	
+	radius = game->minimap.square_size / 3;
+	if (radius < 3)
+		radius = 3;
+	i = -radius;
+	while (i <= radius)
 	{
-		j = -2;
-		while (j < 3)
+		j = -radius;
+		while (j <= radius)
 		{
-			if (x + i >= 0 && x + i < WIDTH && y + j >= 0 && y + j < HEIGHT)
-				my_mlx_pixel_put(&game->img, x + i, y + j, 0xFF0000);
+			if ((i*i + j*j) <= (radius*radius))
+			{
+				if (x + i >= 0 && x + i < WIDTH && y + j >= 0 && y + j < HEIGHT)
+					my_mlx_pixel_put(&game->img, x + i, y + j, 0xFF0000);
+			}
 			j++;
 		}
 		i++;

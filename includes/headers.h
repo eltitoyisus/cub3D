@@ -13,11 +13,8 @@
 #ifndef HEADERS_H
 # define HEADERS_H
 
-// # define WIDTH 2000
-// # define HEIGHT 1300
-
-# define WIDTH 1080
-# define HEIGHT 720
+# define WIDTH 2000
+# define HEIGHT 1300
 
 # define KEY_ESC 65307
 # define KEY_W 119
