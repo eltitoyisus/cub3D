@@ -19,6 +19,7 @@
 // PARSE
 // INIT STRUCTS
 void	init_pos(t_pos *pos);
+void	init_minimap(t_minimap *minimap);
 void	init_map(t_map *map);
 void	init_player(t_player *player);
 void	init_game(t_game *game);
@@ -125,5 +126,10 @@ void	load_door(t_mlx_game *game);
 int		is_near_door(t_game *game, int map_x, int map_y);
 void	check_door_interaction(t_mlx_game *game);
 int		handle_doors(t_mlx_game *game);
+
+// MINIMAP
+void	draw_square(t_mlx_game *game, int x, int y, int color);
+void	draw_player(t_mlx_game *game, int x, int y);
+int		minimap(t_mlx_game *game);
 
 #endif

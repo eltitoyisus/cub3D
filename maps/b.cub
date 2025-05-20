@@ -1,0 +1,11 @@
+NO ./sprites/wood.xpm
+EA ./sprites/wood.xpm
+SO ./sprites/wood.xpm
+WE ./sprites/wood.xpm
+
+C 255,0,255
+F 0,255,0
+
+111
+1N01
+111

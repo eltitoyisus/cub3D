@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:30:51 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/18 19:03:49 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:29:15 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ void init_pos(t_pos *pos)
 {
 	pos->x = 0;
 	pos->y = 0;
+}
+
+void init_minimap(t_minimap *minimap)
+{
+	minimap->square_size = 10;
+	minimap->width = 0;
+	minimap->height = 0;
 }
 
 void init_map(t_map *map)
@@ -104,6 +111,7 @@ void init_mlx_game(t_mlx_game *mlx_game)
 	init_texture(&mlx_game->door_open);
 	init_texture(&mlx_game->door_close);
 	init_ray(&mlx_game->ray);
+	init_minimap(&mlx_game->minimap);
 }
 
 void init_structs(t_mlx_game *mlx_game, t_game **game)

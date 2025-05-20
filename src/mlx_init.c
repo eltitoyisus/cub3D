@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:12:28 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/18 19:33:59 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:27:11 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int render_frame(void *param)
 	game->img.addr = mlx_get_data_addr(game->img.img_ptr, &game->img.bits_per_pixel, 
 									&game->img.line_length, &game->img.endian);
 	raycasting(game);
+	minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img_ptr, 0, 0);
 	mlx_destroy_image(game->mlx, game->img.img_ptr);
 	game->img.img_ptr = NULL;

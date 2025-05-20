@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:02:59 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/19 13:17:03 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:24:20 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	my_mlx_pixel_put(t_texture *texture, int x, int y, int color)
 {
 	char	*dst;
 
+	if (!texture || !texture->addr)
+		return;
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
 		dst = texture->addr + (y * texture->line_length + 

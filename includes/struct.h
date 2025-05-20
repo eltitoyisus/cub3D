@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:27:02 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/19 11:27:06 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:20:56 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ typedef struct s_pos
 	int	x;
 	int	y;
 }	t_pos;
+
+typedef struct s_minimap
+{
+	int	square_size;
+	int	width;
+	int	height;
+}	t_minimap;
 
 typedef struct s_map
 {
@@ -107,6 +114,7 @@ typedef struct s_mlx_game
 	t_texture	door_close;
 	int			door_toggle;
 	t_ray		ray;
+	t_minimap	minimap;
 }	t_mlx_game;
 
 #endif

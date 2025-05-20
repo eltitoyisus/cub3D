@@ -182,6 +182,16 @@
 }
 
 {
+   Minimap_Invalid_Reads
+   Memcheck:Addr1
+   fun:minimap
+   fun:render_frame
+   fun:mlx_loop
+   fun:ft_init
+   fun:main
+}
+
+{
    dl_new_object_malloc
    Memcheck:Leak
    match-leak-kinds: reachable
