@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/20 08:29:12 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/20 17:40:51 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,18 +22,24 @@ SRC = $(SRC_DIR)main.c				\
 		$(SRC_DIR)valid_sprite.c	\
 		$(SRC_DIR)valid_rgb.c		\
 		$(SRC_DIR)valid_map.c		\
+		$(SRC_DIR)valid_map2.c		\
 		$(SRC_DIR)player_pos.c		\
 		$(SRC_DIR)utils.c			\
 		$(SRC_DIR)init_struct.c		\
+		$(SRC_DIR)init_game.c		\
 		$(SRC_DIR)handle_movement.c	\
 		$(SRC_DIR)handle_mouse.c	\
 		$(SRC_DIR)save_params.c		\
 		$(SRC_DIR)read_file.c		\
+		$(SRC_DIR)read_file2.c		\
+		$(SRC_DIR)read_file3.c		\
 		$(SRC_DIR)mlx_init.c		\
 		$(SRC_DIR)key_binds.c		\
 		$(SRC_DIR)convert_xpm.c		\
 		$(SRC_DIR)raycasting.c		\
 		$(SRC_DIR)minimap.c			\
+		$(SRC_DIR)draw_map.c		\
+		$(SRC_DIR)draw_map2.c		\
 		$(SRC_DIR)door.c
 
 OBJS = $(SRC:.c=.o)

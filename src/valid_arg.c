@@ -12,24 +12,26 @@
 
 #include "../includes/main.h"
 
-int valid_ext(char *filename)
+int	valid_ext(char *filename)
 {
-	char *ext = ft_strrchr(filename, '.');
+	char	*ext;
+
+	ext = ft_strrchr(filename, '.');
 	if (ext && !ft_strncmp(ext, ".cub", 5))
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
-int valid_route(char *filename)
+int	valid_route(char *filename)
 {
 	if (!ft_strncmp(filename, "maps/", 5))
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
-int valid_arg(char *filename)
+int	valid_arg(char *filename)
 {
 	if (valid_ext(filename) && valid_route(filename))
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }

@@ -6,15 +6,15 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:32:00 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/17 15:52:05 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:41:37 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/main.h"
 
-int save_floor(t_game *game, char *line)
+int	save_floor(t_game *game, char *line)
 {
-	char **values;
+	char	**values;
 
 	values = ft_split(line + 2, ',');
 	if (!values)
@@ -26,9 +26,9 @@ int save_floor(t_game *game, char *line)
 	return (1);
 }
 
-int save_ceiling(t_game *game, char *line)
+int	save_ceiling(t_game *game, char *line)
 {
-	char **values;
+	char	**values;
 
 	values = ft_split(line + 2, ',');
 	if (!values)
@@ -40,13 +40,12 @@ int save_ceiling(t_game *game, char *line)
 	return (1);
 }
 
-int save_rgb(t_game *game, char **lines)
+int	save_rgb(t_game *game, char **lines)
 {
-	int i;
+	int	i;
 
 	if (!game || !lines)
 		return (0);
-	
 	i = 0;
 	while (lines && lines[i])
 	{
@@ -68,9 +67,17 @@ int save_rgb(t_game *game, char **lines)
 	return (1);
 }
 
-int save_textures(t_game *game, char **lines)
+int	save_texture(t_game *game, char *line, char **texture_ptr)
 {
-	int i;
+	(void)game;
+	if (ft_strlen(line) >= 3)
+		*texture_ptr = ft_strdup(line + 3);
+	return (1);
+}
+
+int	save_textures(t_game *game, char **lines)
+{
+	int	i;
 
 	if (!game || !lines)
 		return (0);
@@ -80,37 +87,15 @@ int save_textures(t_game *game, char **lines)
 		if (lines[i] && ft_strlen(lines[i]) >= 2)
 		{
 			if (lines[i][0] == 'N' && lines[i][1] == 'O')
-			{
-				if (ft_strlen(lines[i]) >= 3)
-					game->no_texture = ft_strdup(lines[i] + 3);
-			}
+				save_texture(game, lines[i], &game->no_texture);
 			else if (lines[i][0] == 'S' && lines[i][1] == 'O')
-			{
-				if (ft_strlen(lines[i]) >= 3)
-					game->so_texture = ft_strdup(lines[i] + 3);
-			}
+				save_texture(game, lines[i], &game->so_texture);
 			else if (lines[i][0] == 'W' && lines[i][1] == 'E')
-			{
-				if (ft_strlen(lines[i]) >= 3)
-					game->we_texture = ft_strdup(lines[i] + 3);
-			}
+				save_texture(game, lines[i], &game->we_texture);
 			else if (lines[i][0] == 'E' && lines[i][1] == 'A')
-			{
-				if (ft_strlen(lines[i]) >= 3)
-					game->ea_texture = ft_strdup(lines[i] + 3);
-			}
+				save_texture(game, lines[i], &game->ea_texture);
 		}
 		i++;
 	}
 	return (1);
 }
-
-int save_params(t_game *game, char **lines)
-{
-	if (!save_rgb(game, lines))
-		return (0);
-	if (!save_textures(game, lines))
-		return (0);
-	return (1);
-}
-

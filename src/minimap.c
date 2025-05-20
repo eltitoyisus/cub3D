@@ -12,11 +12,11 @@
 
 #include "../includes/main.h"
 
-void draw_square(t_mlx_game *game, int x, int y, int color)
+void	draw_square(t_mlx_game *game, int x, int y, int color)
 {
-	int i;
-	int j;
-	int size;
+	int	i;
+	int	j;
+	int	size;
 
 	size = game->minimap.square_size;
 	i = 0;
@@ -33,12 +33,12 @@ void draw_square(t_mlx_game *game, int x, int y, int color)
 	}
 }
 
-void draw_player(t_mlx_game *game, int x, int y)
+void	draw_player(t_mlx_game *game, int x, int y)
 {
-	int i;
-	int j;
-	int radius;
-	
+	int	i;
+	int	j;
+	int	radius;
+
 	radius = game->minimap.square_size / 3;
 	if (radius < 3)
 		radius = 3;
@@ -48,7 +48,7 @@ void draw_player(t_mlx_game *game, int x, int y)
 		j = -radius;
 		while (j <= radius)
 		{
-			if ((i*i + j*j) <= (radius*radius))
+			if ((i * i + j * j) <= (radius * radius))
 			{
 				if (x + i >= 0 && x + i < WIDTH && y + j >= 0 && y + j < HEIGHT)
 					my_mlx_pixel_put(&game->img, x + i, y + j, 0xFF0000);
@@ -59,42 +59,55 @@ void draw_player(t_mlx_game *game, int x, int y)
 	}
 }
 
-int minimap(t_mlx_game *game)
+void	draw_map_element(t_mlx_game *game, int x, int y, int map_size)
 {
-	int x;
-	int y;
-	int offset_x;
-	int offset_y;
-	int map_size;
+	int	draw_x;
+	int	draw_y;
 
-	if (!game->img.img_ptr || !game->img.addr)
-		return (1);
-	map_size = game->minimap.square_size;
-	offset_x = 10;
-	offset_y = 10;
+	draw_x = 10 + (x * map_size);
+	draw_y = 10 + (y * map_size);
+	if (game->map.grid[y][x] == '1')
+		draw_square(game, draw_x, draw_y, 0x888888);
+	else if (game->map.grid[y][x] == '0' || game->map.grid[y][x] == 'D'
+		|| game->map.grid[y][x] == 'N' || game->map.grid[y][x] == 'S'
+		|| game->map.grid[y][x] == 'E' || game->map.grid[y][x] == 'W')
+		draw_square(game, draw_x, draw_y, 0x333333);
+}
+
+int	render_minimap(t_mlx_game *game, int map_size)
+{
+	int	x;
+	int	y;
+
 	y = 0;
 	while (y < game->map.height)
 	{
 		x = 0;
 		while (x < game->map.width)
 		{
-			if (!(x < 0 || y < 0 || x >= game->map.width || y >= game->map.height))
-			{
-				int draw_x = offset_x + (x * map_size);
-				int draw_y = offset_y + (y * map_size);
-				if (game->map.grid[y][x] == '1')
-					draw_square(game, draw_x, draw_y, 0x888888);
-				else if (game->map.grid[y][x] == '0' || game->map.grid[y][x] == 'D' || 
-						game->map.grid[y][x] == 'N' || game->map.grid[y][x] == 'S' || 
-						game->map.grid[y][x] == 'E' || game->map.grid[y][x] == 'W')
-					draw_square(game, draw_x, draw_y, 0x333333);
-			}
+			if (!(x < 0 || y < 0 || x >= game->map.width
+					|| y >= game->map.height))
+				draw_map_element(game, x, y, map_size);
 			x++;
 		}
 		y++;
 	}
-	draw_player(game, 
-				offset_x + (int)(game->ray.pos_x * map_size), 
-				offset_y + (int)(game->ray.pos_y * map_size));
+	return (0);
+}
+
+int	minimap(t_mlx_game *game)
+{
+	int	map_size;
+	int	offset_x;
+	int	offset_y;
+
+	if (!game->img.img_ptr || !game->img.addr)
+		return (1);
+	map_size = game->minimap.square_size;
+	offset_x = 10;
+	offset_y = 10;
+	render_minimap(game, map_size);
+	draw_player(game, offset_x + (int)(game->ray.pos_x * map_size), offset_y
+		+ (int)(game->ray.pos_y * map_size));
 	return (0);
 }

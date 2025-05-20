@@ -6,20 +6,20 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:44:36 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/18 18:48:25 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:57:20 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/main.h"
 
-int handle_exit(t_mlx_game *game)
+int	handle_exit(t_mlx_game *game)
 {
 	ft_destroy(game);
 	exit(0);
-	return 1;
+	return (1);
 }
 
-int ft_look(int keycode, t_game *game)
+int	ft_look(int keycode, t_game *game)
 {
 	if (keycode == LOOK_LEFT)
 		rotate_left(game);
@@ -28,9 +28,8 @@ int ft_look(int keycode, t_game *game)
 	return (0);
 }
 
-int ft_movement(int keycode, t_game *game)
+int	ft_movement(int keycode, t_game *game)
 {
-
 	if (keycode == KEY_W)
 		move_forward(game);
 	else if (keycode == KEY_S)
@@ -42,19 +41,19 @@ int ft_movement(int keycode, t_game *game)
 	return (0);
 }
 
-int key_handle(int keycode, void *param)
+int	key_handle(int keycode, void *param)
 {
-	t_mlx_game *mlx_game;
-	t_game *game;
+	t_mlx_game	*mlx_game;
+	t_game		*game;
 
 	mlx_game = (t_mlx_game *)param;
 	game = mlx_game->game;
 	if (keycode == LOOK_RIGHT || keycode == LOOK_LEFT)
 		ft_look(keycode, game);
-	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D)
+	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S
+		|| keycode == KEY_D)
 		ft_movement(keycode, game);
 	else if (keycode == KEY_ESC)
 		handle_exit(mlx_game);
 	return (0);
 }
-

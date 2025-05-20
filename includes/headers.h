@@ -29,26 +29,21 @@
 
 # define DOOR_DISTANCE 1.75
 
-// XPM SIZE
-// 512 512
-// 1024 1024
-
-# include "main.h"
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_int.h"
+# include "main.h"
 
-//other libraries
-# include <stdio.h>
+// other libraries
 # include <fcntl.h>
+# include <math.h>
+# include <signal.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
+# include <string.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <signal.h>
-# include <string.h>
-# include <stdbool.h>
-# include <math.h>
+# include <unistd.h>
 
 #endif

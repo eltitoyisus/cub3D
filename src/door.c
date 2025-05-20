@@ -12,7 +12,7 @@
 
 #include "../includes/main.h"
 
-void load_door(t_mlx_game *game)
+void	load_door(t_mlx_game *game)
 {
 	load_xpm(game, &game->door_close, "./sprites/door_close.xpm");
 	if (game->door_close.img_ptr)
@@ -21,11 +21,11 @@ void load_door(t_mlx_game *game)
 		printf("Fail load texture\n");
 }
 
-int is_near_door(t_game *game, int map_x, int map_y)
+int	is_near_door(t_game *game, int map_x, int map_y)
 {
-	double distance;
-	double dx;
-	double dy;
+	double	distance;
+	double	dx;
+	double	dy;
 
 	dx = game->player.pos_x - (map_x + 0.5);
 	dy = game->player.pos_y - (map_y + 0.5);
@@ -33,46 +33,50 @@ int is_near_door(t_game *game, int map_x, int map_y)
 	return (distance < DOOR_DISTANCE);
 }
 
-void check_door_interaction(t_mlx_game *game)
+bool	check_door_at_position(t_mlx_game *game, int x, int y)
 {
-	int x, y;
-	int player_x, player_y;
-	bool found_nearby_door = false;
+	if (y >= 0 && x >= 0 && y < game->map.height && x < game->map.width)
+	{
+		if (game->map.grid[y][x] == 'D' && is_near_door(game->game, x, y))
+		{
+			game->map.grid[y][x] = '0';
+			game->door_toggle = true;
+			return (true);
+		}
+	}
+	return (false);
+}
 
+void	check_door_interaction(t_mlx_game *game)
+{
+	bool	found_nearby_door;
+	int		x;
+	int		y;
+	int		player_x;
+	int		player_y;
+
+	found_nearby_door = false;
 	if (!game || !game->game)
-		return;
+		return ;
 	player_x = (int)game->game->player.pos_x;
 	player_y = (int)game->game->player.pos_y;
 	y = player_y - 1.75;
-	while (y <= player_y + 1.75)
+	while (y <= player_y + 1.75 && !found_nearby_door)
 	{
 		x = player_x - 1.75;
-		while (x <= player_x + 1.75)
+		while (x <= player_x + 1.75 && !found_nearby_door)
 		{
-			if (y >= 0 && x >= 0 && y < game->map.height && x < game->map.width)
-			{
-				if (game->map.grid[y][x] == 'D')
-				{
-					if (is_near_door(game->game, x, y))
-					{
-						found_nearby_door = true;
-						game->map.grid[y][x] = '0';
-						game->door_toggle = true;
-						break;
-					}
-				}
-			}
+			if (check_door_at_position(game, x, y))
+				found_nearby_door = true;
 			x++;
 		}
-		if (found_nearby_door)
-			break;
 		y++;
 	}
 	if (!found_nearby_door)
 		game->door_toggle = false;
 }
 
-int handle_doors(t_mlx_game *game)
+int	handle_doors(t_mlx_game *game)
 {
 	check_door_interaction(game);
 	return (0);

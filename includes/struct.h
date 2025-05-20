@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:27:02 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/19 19:20:56 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:42:40 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,70 @@
 
 typedef struct s_pos
 {
-	int	x;
-	int	y;
-}	t_pos;
+	int			x;
+	int			y;
+}				t_pos;
 
 typedef struct s_minimap
 {
-	int	square_size;
-	int	width;
-	int	height;
-}	t_minimap;
+	int			square_size;
+	int			width;
+	int			height;
+}				t_minimap;
+
+typedef struct s_parse_data
+{
+	char		**map_lines;
+	char		**config_lines;
+	int			map_count;
+	int			config_count;
+	int			in_map;
+	int			fd;
+}				t_parse_data;
+
+typedef struct s_draw_data
+{
+	int			start;
+	int			end;
+	int			color;
+}				t_draw_data;
+
+typedef struct s_config_data
+{
+	char		*clean_line;
+	char		*line;
+	int			fd;
+	char		**cfg;
+	int			*count;
+}				t_config_data;
+
+typedef struct s_flood_context
+{
+	char		**grid;
+	int			width;
+	int			height;
+	int			*breached;
+}				t_flood_context;
 
 typedef struct s_map
 {
-	char	**grid;
-	int		width;
-	int		height;
-	t_pos	player_pos;
-	char	player_dir;
-	int		valid;
-}	t_map;
+	char		**grid;
+	int			width;
+	int			height;
+	t_pos		player_pos;
+	char		player_dir;
+	int			valid;
+}				t_map;
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-}	t_player;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+}				t_player;
 
 typedef struct s_game
 {
@@ -64,40 +98,40 @@ typedef struct s_game
 	int			ceiling_r;
 	int			ceiling_g;
 	int			ceiling_b;
-}	t_game;
+}				t_game;
 
 typedef struct s_texture
 {
-	void	*img_ptr;
-	char	*addr;
-	int		width;
-	int		height;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_texture;
+	void		*img_ptr;
+	char		*addr;
+	int			width;
+	int			height;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_texture;
 
 typedef struct s_ray
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	int		map_x;
-	int		map_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	double	perp_wall_dist;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-}	t_ray;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	int			map_x;
+	int			map_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	double		perp_wall_dist;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+}				t_ray;
 
 typedef struct s_mlx_game
 {
@@ -115,6 +149,6 @@ typedef struct s_mlx_game
 	int			door_toggle;
 	t_ray		ray;
 	t_minimap	minimap;
-}	t_mlx_game;
+}				t_mlx_game;
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:31:37 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/18 19:29:36 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:55:34 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/main.h"
 
-int init_mouse(t_mlx_game *mlx_game)
+int	init_mouse(t_mlx_game *mlx_game)
 {
 	if (!mlx_game || !mlx_game->mlx || !mlx_game->win)
 		return (0);
@@ -21,7 +21,7 @@ int init_mouse(t_mlx_game *mlx_game)
 	return (1);
 }
 
-int toggle_mouse_visibility(t_mlx_game *mlx_game, int show)
+int	toggle_mouse_visibility(t_mlx_game *mlx_game, int show)
 {
 	if (!mlx_game || !mlx_game->mlx || !mlx_game->win)
 		return (0);
@@ -32,36 +32,44 @@ int toggle_mouse_visibility(t_mlx_game *mlx_game, int show)
 	return (1);
 }
 
-void rotate_left(t_game *game)
+void	rotate_left(t_game *game)
 {
-	double old_dir_x;
-	double old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	old_dir_x = game->player.dir_x;
 	old_plane_x = game->player.plane_x;
-	game->player.dir_x = old_dir_x * cos(-MOUSE_SPEED) - game->player.dir_y * sin(-MOUSE_SPEED);
-	game->player.dir_y = old_dir_x * sin(-MOUSE_SPEED) + game->player.dir_y * cos(-MOUSE_SPEED);
-	game->player.plane_x = old_plane_x * cos(-MOUSE_SPEED) - game->player.plane_y * sin(-MOUSE_SPEED);
-	game->player.plane_y = old_plane_x * sin(-MOUSE_SPEED) + game->player.plane_y * cos(-MOUSE_SPEED);
+	game->player.dir_x = old_dir_x * cos(-MOUSE_SPEED) - game->player.dir_y
+		* sin(-MOUSE_SPEED);
+	game->player.dir_y = old_dir_x * sin(-MOUSE_SPEED) + game->player.dir_y
+		* cos(-MOUSE_SPEED);
+	game->player.plane_x = old_plane_x * cos(-MOUSE_SPEED)
+		- game->player.plane_y * sin(-MOUSE_SPEED);
+	game->player.plane_y = old_plane_x * sin(-MOUSE_SPEED)
+		+ game->player.plane_y * cos(-MOUSE_SPEED);
 }
 
-void rotate_right(t_game *game)
+void	rotate_right(t_game *game)
 {
-	double old_dir_x;
-	double old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	old_dir_x = game->player.dir_x;
 	old_plane_x = game->player.plane_x;
-	game->player.dir_x = old_dir_x * cos(MOUSE_SPEED) - game->player.dir_y * sin(MOUSE_SPEED);
-	game->player.dir_y = old_dir_x * sin(MOUSE_SPEED) + game->player.dir_y * cos(MOUSE_SPEED);
-	game->player.plane_x = old_plane_x * cos(MOUSE_SPEED) - game->player.plane_y * sin(MOUSE_SPEED);
-	game->player.plane_y = old_plane_x * sin(MOUSE_SPEED) + game->player.plane_y * cos(MOUSE_SPEED);
+	game->player.dir_x = old_dir_x * cos(MOUSE_SPEED) - game->player.dir_y
+		* sin(MOUSE_SPEED);
+	game->player.dir_y = old_dir_x * sin(MOUSE_SPEED) + game->player.dir_y
+		* cos(MOUSE_SPEED);
+	game->player.plane_x = old_plane_x * cos(MOUSE_SPEED) - game->player.plane_y
+		* sin(MOUSE_SPEED);
+	game->player.plane_y = old_plane_x * sin(MOUSE_SPEED) + game->player.plane_y
+		* cos(MOUSE_SPEED);
 }
 
-int handle_mouse(int x, int y, t_mlx_game *mlx_game)
+int	handle_mouse(int x, int y, t_mlx_game *mlx_game)
 {
-	t_game *game;
-	int mouse_visible;
+	t_game	*game;
+	int		mouse_visible;
 
 	mouse_visible = 0;
 	game = mlx_game->game;
@@ -70,7 +78,7 @@ int handle_mouse(int x, int y, t_mlx_game *mlx_game)
 		mouse_visible = !mouse_visible;
 		toggle_mouse_visibility(mlx_game, mouse_visible);
 		mlx_mouse_move(mlx_game->mlx, mlx_game->win, WIDTH / 2, HEIGHT / 2);
-		return 0;
+		return (0);
 	}
 	if (x < WIDTH / 2)
 	{
@@ -82,5 +90,5 @@ int handle_mouse(int x, int y, t_mlx_game *mlx_game)
 		rotate_right(game);
 		mlx_mouse_move(mlx_game->mlx, mlx_game->win, WIDTH / 2, HEIGHT / 2);
 	}
-	return 0;
+	return (0);
 }

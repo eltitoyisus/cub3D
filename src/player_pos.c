@@ -12,7 +12,7 @@
 
 #include "../includes/main.h"
 
-void player_facing_north(t_game *game)
+void	player_facing_north(t_game *game)
 {
 	game->player.dir_x = 0;
 	game->player.dir_y = -1;
@@ -20,7 +20,7 @@ void player_facing_north(t_game *game)
 	game->player.plane_y = 0;
 }
 
-void player_facing_south(t_game *game)
+void	player_facing_south(t_game *game)
 {
 	game->player.dir_x = 0;
 	game->player.dir_y = 1;
@@ -28,7 +28,7 @@ void player_facing_south(t_game *game)
 	game->player.plane_y = 0;
 }
 
-void player_facing_east(t_game *game)
+void	player_facing_east(t_game *game)
 {
 	game->player.dir_x = 1;
 	game->player.dir_y = 0;
@@ -36,7 +36,7 @@ void player_facing_east(t_game *game)
 	game->player.plane_y = 0.66;
 }
 
-void player_facing_west(t_game *game)
+void	player_facing_west(t_game *game)
 {
 	game->player.dir_x = -1;
 	game->player.dir_y = 0;
@@ -44,7 +44,7 @@ void player_facing_west(t_game *game)
 	game->player.plane_y = -0.66;
 }
 
-int save_player_direction(t_game *game)
+int	save_player_direction(t_game *game)
 {
 	if (!game)
 		return (0);

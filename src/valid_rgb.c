@@ -12,29 +12,29 @@
 
 #include "../includes/main.h"
 
-int valid_value(char *str)
+int	valid_value(char *str)
 {
-	int value;
+	int	value;
 
 	while (*str == ' ')
 		str++;
 	value = ft_atoi(str);
 	if (value < 0 || value > 255)
-		return 0;
-	return 1;
+		return (0);
+	return (1);
 }
 
-int valid_rgb(char *line)
+int	valid_rgb(char *line)
 {
-	char **values;
-	int i;
-	int valid;
+	char	**values;
+	int		i;
+	int		valid;
 
 	if (!(line[0] == 'F' || line[0] == 'C'))
-		return 0;
+		return (0);
 	values = ft_split(line + 2, ',');
 	if (!values)
-		return 0;
+		return (0);
 	i = 0;
 	while (values[i])
 		i++;
@@ -50,19 +50,19 @@ int valid_rgb(char *line)
 		i++;
 	}
 	free_arr(values);
-	return valid;
+	return (valid);
 }
 
-int valid_format(char *input)
+int	valid_format(char *input)
 {
-	char **lines;
-	int i;
-	int valid_floor;
-	int valid_ceiling;
+	char	**lines;
+	int		i;
+	int		valid_floor;
+	int		valid_ceiling;
 
 	lines = ft_split(input, '\n');
 	if (!lines)
-		return 0;
+		return (0);
 	i = 0;
 	valid_floor = 0;
 	valid_ceiling = 0;
