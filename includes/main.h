@@ -79,6 +79,7 @@ void		free_arr(char **arr);
 char		*skip_white_spaces(char *line);
 char		*clean_line_str(char *line);
 void		free_temp_grid(char **temp_grid, int height);
+void		free_game(t_game *game);
 
 // SAVE PARAMS
 int			save_floor(t_game *game, char *line);

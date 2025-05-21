@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_binds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:44:36 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/21 10:25:27 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:24:10 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int	handle_exit(void *param)
 {
-	t_mlx_game	*game;
+	t_mlx_game	*mlx_game;
 
-	game = (t_mlx_game *)param;
-	ft_destroy(game);
+	mlx_game = (t_mlx_game *)param;
+	ft_destroy(mlx_game);
+	free_game(mlx_game->game);
 	exit(0);
 	return (0);
 }

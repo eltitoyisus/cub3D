@@ -17,11 +17,14 @@ int	main(int argc, char **argv)
 	t_mlx_game	mlx_game;
 	t_game		*game;
 	t_game		*game_ptr;
+	t_game		*temp;
 
 	if (argc != 2)
 		return (printf("Error: invalid arg number\n"), 1);
 	init_structs(&mlx_game, &game);
-	game_ptr = read_file(argv[1]);
+	temp = read_file(argv[1]);
+	free_game(game);
+	game_ptr = temp;
 	if (game_ptr == NULL)
 		return (1);
 	if (!find_player_position(game_ptr) || !save_player_direction(game_ptr))

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
+#    By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/21 09:46:27 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/21 14:03:39 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SRC = $(SRC_DIR)main.c				\
 OBJS = $(SRC:.c=.o)
 
 all: $(NAME)
-
+	@chmod 777 ./minilibx/configure
+	
 libft/libft.a:
 	@$(MAKE) -C libft
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 12:45:11 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/21 10:13:22 by jramos-a         ###   ########.fr       */
+/*   Created: 2025/05/21 12:43:42 by jramos-a          #+#    #+#             */
+/*   Updated: 2025/05/21 13:54:24 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	free_game(t_game *game)
 		free(game->we_texture);
 	if (game->ea_texture)
 		free(game->ea_texture);
-	if (game->door_open)
-		free(game->door_open);
 	if (game->map.grid)
 	{
 		i = 0;

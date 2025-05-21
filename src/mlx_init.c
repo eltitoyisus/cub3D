@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:12:28 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/21 10:24:56 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:54:57 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,25 @@ int	render_frame(void *param)
 	return (0);
 }
 
-void	ft_destroy(t_mlx_game *game)
+void	ft_destroy(t_mlx_game *mlx_game)
 {
-	if (game->no_tex.img_ptr)
-		mlx_destroy_image(game->mlx, game->no_tex.img_ptr);
-	if (game->so_tex.img_ptr)
-		mlx_destroy_image(game->mlx, game->so_tex.img_ptr);
-	if (game->we_tex.img_ptr)
-		mlx_destroy_image(game->mlx, game->we_tex.img_ptr);
-	if (game->ea_tex.img_ptr)
-		mlx_destroy_image(game->mlx, game->ea_tex.img_ptr);
-	if (game->door_open.img_ptr)
-		mlx_destroy_image(game->mlx, game->door_open.img_ptr);
-	if (game->door_close.img_ptr)
-		mlx_destroy_image(game->mlx, game->door_close.img_ptr);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	if (game->mlx)
+	if (mlx_game->no_tex.img_ptr)
+		mlx_destroy_image(mlx_game->mlx, mlx_game->no_tex.img_ptr);
+	if (mlx_game->so_tex.img_ptr)
+		mlx_destroy_image(mlx_game->mlx, mlx_game->so_tex.img_ptr);
+	if (mlx_game->we_tex.img_ptr)
+		mlx_destroy_image(mlx_game->mlx, mlx_game->we_tex.img_ptr);
+	if (mlx_game->ea_tex.img_ptr)
+		mlx_destroy_image(mlx_game->mlx, mlx_game->ea_tex.img_ptr);
+	if (mlx_game->door_close.img_ptr)
+		mlx_destroy_image(mlx_game->mlx, mlx_game->door_close.img_ptr);
+	if (mlx_game->win)
+		mlx_destroy_window(mlx_game->mlx, mlx_game->win);
+	if (mlx_game->mlx)
 	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
+		mlx_destroy_display(mlx_game->mlx);
+		mlx_loop_end(mlx_game->mlx);
+		free(mlx_game->mlx);
 	}
 }
 
@@ -98,7 +97,6 @@ int	ft_init(t_mlx_game *game)
 	game->img.img_ptr = NULL;
 	game->img.addr = NULL;
 	init_textures(game);
-	init_mouse(game);
 	mlx_hook(game->win, 2, 1L << 0, key_handle, game);
 	mlx_hook(game->win, 6, 1L << 6, handle_mouse, game);
 	mlx_hook(game->win, 17, 0, handle_exit, game);
