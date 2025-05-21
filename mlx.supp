@@ -262,6 +262,163 @@
 }
 
 {
+   Memcheck_StillReachable_handle_line
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:ft_strdup
+   fun:handle_line
+   fun:process_file_line
+   fun:process_line_and_clean
+   fun:process_file_lines
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   Memcheck_StillReachable_save_texture_90
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:ft_strdup
+   fun:save_texture
+   fun:save_textures
+   fun:save_params
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   dl_strdup_dlopen_catcherror
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+
+{
+   dl_new_object_dlopen_catcherror
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+
+{
+   dl_strdup_deps_dlopen_worker
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+
+{
+   dl_new_object_deps_dlopen_worker
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+
+{
+   ft_strdup_process_file_line_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:ft_strdup
+   fun:process_file_line
+   fun:process_line_and_clean
+   fun:process_file_lines
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   Memcheck_StillReachable_save_texture_96
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:ft_strdup
+   fun:save_texture
+   fun:save_textures
+   fun:save_params
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   Memcheck_StillReachable_save_texture_92
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:ft_strdup
+   fun:save_texture
+   fun:save_textures
+   fun:save_params
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
+   Memcheck_StillReachable_save_texture_94
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:ft_strdup
+   fun:save_texture
+   fun:save_textures
+   fun:save_params
+   fun:parse_file_content
+   fun:read_file
+   fun:main
+}
+
+{
    Memcheck_StillReachable_ft_strdup_100
    Memcheck:Leak
    fun:malloc

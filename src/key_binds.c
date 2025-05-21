@@ -6,17 +6,20 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:44:36 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/20 16:57:20 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/21 10:25:27 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/main.h"
 
-int	handle_exit(t_mlx_game *game)
+int	handle_exit(void *param)
 {
+	t_mlx_game	*game;
+
+	game = (t_mlx_game *)param;
 	ft_destroy(game);
 	exit(0);
-	return (1);
+	return (0);
 }
 
 int	ft_look(int keycode, t_game *game)

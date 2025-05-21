@@ -6,11 +6,40 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 12:45:11 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/20 17:15:07 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/21 10:13:22 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/main.h"
+
+void	free_game(t_game *game)
+{
+	int	i;
+
+	if (!game)
+		return ;
+	if (game->no_texture)
+		free(game->no_texture);
+	if (game->so_texture)
+		free(game->so_texture);
+	if (game->we_texture)
+		free(game->we_texture);
+	if (game->ea_texture)
+		free(game->ea_texture);
+	if (game->door_open)
+		free(game->door_open);
+	if (game->map.grid)
+	{
+		i = 0;
+		while (i < game->map.height && game->map.grid[i])
+		{
+			free(game->map.grid[i]);
+			i++;
+		}
+		free(game->map.grid);
+	}
+	free(game);
+}
 
 int	build_game_map(t_game *game, char **map_lines, int map_count)
 {
@@ -61,14 +90,14 @@ t_game	*read_file(char *filepath)
 	init_game(game);
 	fd = open(filepath, O_RDONLY);
 	if (fd == -1)
-		return (free(game), NULL);
+		return (free_game(game), NULL);
 	map_count = parse_file_content(fd, game, map_lines);
 	close(fd);
 	if (map_count <= 0)
-		return (free(game), NULL);
+		return (free_game(game), NULL);
 	if (!build_game_map(game, map_lines, map_count))
-		return (free(game), NULL);
+		return (free_game(game), NULL);
 	if (!validate_game_map(game))
-		return (free(game), NULL);
+		return (free_game(game), NULL);
 	return (game);
 }

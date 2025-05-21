@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/20 17:40:51 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/21 09:46:27 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC = $(SRC_DIR)main.c				\
 		$(SRC_DIR)utils.c			\
 		$(SRC_DIR)init_struct.c		\
 		$(SRC_DIR)init_game.c		\
+		$(SRC_DIR)init_parse.c		\
 		$(SRC_DIR)handle_movement.c	\
 		$(SRC_DIR)handle_mouse.c	\
 		$(SRC_DIR)save_params.c		\

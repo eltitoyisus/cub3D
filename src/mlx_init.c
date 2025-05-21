@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:12:28 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/20 17:41:43 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/21 10:24:56 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,6 @@ int	render_frame(void *param)
 
 void	ft_destroy(t_mlx_game *game)
 {
-	if (!game || !game->mlx)
-		return ;
-	if (game->win)
-		mlx_mouse_show(game->mlx, game->win);
 	if (game->no_tex.img_ptr)
 		mlx_destroy_image(game->mlx, game->no_tex.img_ptr);
 	if (game->so_tex.img_ptr)
@@ -74,8 +70,6 @@ void	ft_destroy(t_mlx_game *game)
 		mlx_destroy_image(game->mlx, game->we_tex.img_ptr);
 	if (game->ea_tex.img_ptr)
 		mlx_destroy_image(game->mlx, game->ea_tex.img_ptr);
-	if (game->img.img_ptr)
-		mlx_destroy_image(game->mlx, game->img.img_ptr);
 	if (game->door_open.img_ptr)
 		mlx_destroy_image(game->mlx, game->door_open.img_ptr);
 	if (game->door_close.img_ptr)

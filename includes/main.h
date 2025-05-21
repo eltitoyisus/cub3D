@@ -30,6 +30,11 @@ void		init_ray(t_ray *ray);
 void		init_mlx_game(t_mlx_game *mlx_game);
 void		init_structs(t_mlx_game *mlx_game, t_game **game);
 
+// INIT PARSE
+void		init_draw_data(t_draw_data *draw_data);
+void		init_config_data(t_config_data *config_data);
+void		init_flood_context(t_flood_context *flood_context);
+
 // VALID INPUT
 int			valid_ext(char *filename);
 int			valid_route(char *filename);
@@ -56,8 +61,6 @@ int			valid_map(t_game *game);
 
 // READ FILE
 int			handle_line(char *line, char *clean, char **cfg, int *data[4]);
-void		init_parse_data(t_parse_data *data, int fd, char *map_lines[1000],
-				char *config_lines[10]);
 int			process_file_line(t_parse_data *data, char *line, char *clean);
 int			process_file_lines(int fd, t_game *game, char *map_lines[1000],
 				char *config_lines[10]);
@@ -98,7 +101,7 @@ void		ft_destroy(t_mlx_game *game);
 int			ft_init(t_mlx_game *game);
 
 // KEYBINDS
-int			handle_exit(t_mlx_game *game);
+int			handle_exit(void *param);
 int			ft_look(int keycode, t_game *game);
 int			ft_movement(int keycode, t_game *game);
 int			key_handle(int keycode, void *param);

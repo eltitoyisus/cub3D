@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2025/05/10 13:52:36 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/21 10:08:47 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,38 +60,57 @@ char	*ft_freebuff(char *buffer)
 	return (str);
 }
 
-char	*ft_readndfree(int fd, char *buffer)
+char	*ft_readndfree(char *str, char *buf)
 {
-	char	*s;
-	int		bytes;
+	char	*temp;
 
-	s = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!s)
-		return (NULL);
-	bytes = 1;
-	while (!ft_strchr(buffer, '\n') && bytes != 0)
+	temp = NULL;
+	if (!str)
 	{
-		bytes = read(fd, s, BUFFER_SIZE);
-		if (bytes < 0)
+		str = malloc(sizeof(char) * 1);
+		if (!str)
+			return (NULL);
+		str[0] = '\0';
+	}
+	if (!buf)
+		return (str);
+	temp = ft_strjoin(str, buf);
+	free(str);
+	return (temp);
+}
+
+char	*read_buffer(int fd, char *buffer, char *temp)
+{
+	int	bytes_read;
+
+	bytes_read = 1;
+	while (bytes_read > 0 && (!buffer || !ft_strchr(buffer, '\n')))
+	{
+		bytes_read = read(fd, temp, BUFFER_SIZE);
+		if (bytes_read < 0)
 		{
-			free(s);
+			free(temp);
 			return (NULL);
 		}
-		s[bytes] = '\0';
-		buffer = ft_strjoin(buffer, s);
+		temp[bytes_read] = '\0';
+		buffer = ft_readndfree(buffer, temp);
 	}
-	free(s);
+	free(temp);
 	return (buffer);
 }
 
 char	*get_next_line(int fd)
 {
 	char		*line;
+	char		*temp;
 	static char	*buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	buffer = ft_readndfree(fd, buffer);
+	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!temp)
+		return (NULL);
+	buffer = read_buffer(fd, buffer, temp);
 	if (!buffer)
 		return (NULL);
 	line = ft_getline(buffer);
