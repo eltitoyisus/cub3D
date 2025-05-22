@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/22 12:39:05 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/22 12:48:54 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,8 @@ SRC = $(SRC_DIR)main.c				\
 OBJS = $(SRC:.c=.o)
 
 all: $(NAME)
-	@chmod 777 ./minilibx/configure
-	
+
+
 libft/libft.a:
 	@$(MAKE) -C libft
 
@@ -57,6 +57,7 @@ minilibx/libmlx.a:
 	@$(MAKE) -C minilibx
 
 $(NAME): $(OBJS) libft/libft.a minilibx/libmlx.a
+	@chmod 777 ./minilibx/configure
 	@$(CC) $(FLAGS) $(OBJS) libft/libft.a minilibx/libmlx.a $(MLXFLAGS) -o $(NAME)
 
 %.o: %.c
