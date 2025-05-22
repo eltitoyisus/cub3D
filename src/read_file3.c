@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:43:44 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/21 12:43:45 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/22 10:05:56 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	process_line_and_clean(char *line, t_parse_data *data)
 {
 	char	*clean;
 	int		result;
+	int		already_freed;
 
 	clean = ft_strtrim(line, "\n");
 	if (!clean)
@@ -74,15 +75,17 @@ int	process_line_and_clean(char *line, t_parse_data *data)
 		free(line);
 		return (0);
 	}
+	already_freed = (data->in_map == 0 && is_config_line(clean));
 	result = process_file_line(data, line, clean);
 	if (!result)
 	{
-		free(clean);
-		free(line);
+		if (!already_freed)
+			free(line);
 		return (0);
 	}
 	free(clean);
-	free(line);
+	if (!already_freed)
+		free(line);
 	return (1);
 }
 
@@ -98,9 +101,13 @@ int	process_file_lines(int fd, t_game *game, char *map_lines[1000],
 	while (line != NULL)
 	{
 		if (!process_line_and_clean(line, &data))
+		{
+			get_next_line(-1);
 			return (0);
+		}
 		line = get_next_line(fd);
 	}
+	get_next_line(-1);
 	return (data.map_count);
 }
 
