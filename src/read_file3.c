@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:43:44 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/22 10:40:32 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/22 12:14:57 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,17 @@ int	process_file_line(t_parse_data *data, char *line, char *clean)
 	}
 }
 
-int	process_line_and_clean(char *line, t_parse_data *data)
+int	process_line_and_clean(t_parse_data *data, char *line)
 {
-	char	*clean;
-	int		result;
+	char	*clean_line;
 
-	clean = ft_strtrim(line, "\n");
-	if (!clean)
-	{
-		free(line);
+	clean_line = clean_line_str(line);
+	if (!clean_line)
 		return (0);
-	}
-	result = process_file_line(data, line, clean);
-	free(clean);
-	free(line);
-	return (result);
+	if (!process_file_line(data, line, clean_line))
+		return (free(clean_line), 0);
+	free(clean_line);
+	return (1);
 }
 
 int	process_file_lines(int fd, t_game *game, char *map_lines[1000],
@@ -90,12 +86,13 @@ int	process_file_lines(int fd, t_game *game, char *map_lines[1000],
 	init_parse_data(&data, fd, map_lines, config_lines);
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		if (!process_line_and_clean(line, &data))
+		if (!process_line_and_clean(&data, line))
 		{
 			get_next_line(-1);
 			free(line);
 			return (0);
 		}
+		free(line);
 	}
 	get_next_line(-1);
 	return (data.map_count);
@@ -105,10 +102,16 @@ int	parse_file_content(int fd, t_game *game, char *map_lines[1000])
 {
 	int		map_count;
 	char	*config_lines[10];
+	int		i;
 
+	for (i = 0; i < 10; i++)
+		config_lines[i] = NULL;
 	map_count = process_file_lines(fd, game, map_lines, config_lines);
 	if (map_count <= 0)
+	{
+		free_config_lines(config_lines, 10);
 		return (map_count);
+	}
 	if (!save_params(game, config_lines))
 	{
 		free_config_lines(config_lines, 10);

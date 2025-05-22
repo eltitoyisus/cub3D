@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:47:03 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/20 17:21:58 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:38:28 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,17 @@ void	free_arr(char **arr)
 
 char	*skip_white_spaces(char *line)
 {
-	return (ft_strtrim(line, " \t\n\v\f\r"));
+	char	*trimmed;
+	char	*result;
+
+	if (!line)
+		return (NULL);
+	trimmed = ft_strtrim(line, " \t\n\v\f\r");
+	if (!trimmed)
+		return (NULL);
+	result = ft_strdup(trimmed);
+	free(trimmed);
+	return (result);
 }
 
 char	*clean_line_str(char *line)

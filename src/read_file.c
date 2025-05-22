@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:43:42 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/21 13:54:24 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:35:07 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,65 @@ void	free_game(t_game *game)
 	free(game);
 }
 
-int	build_game_map(t_game *game, char **map_lines, int map_count)
+int	init_game_map(t_game *game, char **map_lines, int map_count, int *max_width)
 {
 	int	i;
-	int	max_width;
 	int	len;
 
 	i = 0;
-	max_width = 0;
+	*max_width = 0;
 	while (i < map_count)
 	{
 		len = ft_strlen(map_lines[i]);
-		if (len > max_width)
-			max_width = len;
+		if (len > *max_width)
+			*max_width = len;
 		i++;
 	}
 	game->map.height = map_count;
-	game->map.width = max_width;
+	game->map.width = *max_width;
 	game->map.grid = malloc(sizeof(char *) * (map_count + 1));
 	if (!game->map.grid)
 		return (0);
-	i = -1;
-	while (++i < map_count)
-		game->map.grid[i] = map_lines[i];
+	return (1);
+}
+
+int	fill_game_map(t_game *game, char **map_lines, int map_count, int max_width)
+{
+	int		i;
+	int		len;
+	char	*padded_line;
+
+	i = 0;
+	while (i < map_count)
+	{
+		padded_line = malloc(max_width + 1);
+		if (!padded_line)
+		{
+			while (--i >= 0)
+				free(game->map.grid[i]);
+			return (free(game->map.grid), 0);
+		}
+		ft_strcpy(padded_line, map_lines[i]);
+		len = ft_strlen(padded_line);
+		while (len < max_width)
+			padded_line[len++] = ' ';
+		padded_line[max_width] = '\0';
+		game->map.grid[i] = padded_line;
+		free(map_lines[i]);
+		i++;
+	}
 	game->map.grid[map_count] = NULL;
+	return (1);
+}
+
+int	build_game_map(t_game *game, char **map_lines, int map_count)
+{
+	int	max_width;
+
+	if (!init_game_map(game, map_lines, map_count, &max_width))
+		return (0);
+	if (!fill_game_map(game, map_lines, map_count, max_width))
+		return (0);
 	return (1);
 }
 

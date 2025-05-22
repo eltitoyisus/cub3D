@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+         #
+#    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/21 14:03:39 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/05/22 11:28:23 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ re: fclean all
 	@clear
 
 v:
-	@valgrind --suppressions=mlx.supp --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME) maps/$(filter-out v,$(MAKECMDGOALS))
+	@valgrind --suppressions=mlx.supp --track-origins=yes --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME) maps/$(filter-out v,$(MAKECMDGOALS))
 
 .PHONY: all clean fclean re v $(filter-out v clean fclean re all,$(MAKECMDGOALS))
 
