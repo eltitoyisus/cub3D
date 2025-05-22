@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 14:12:13 by marvin            #+#    #+#             */
-/*   Updated: 2025/05/22 10:06:22 by jramos-a         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 char	*ft_getline(char *buffer)
@@ -24,10 +12,7 @@ char	*ft_getline(char *buffer)
 		i++;
 	str = ft_substr(buffer, 0, i + ft_putend(buffer));
 	if (!str)
-	{
-		free(str);
 		return (NULL);
-	}
 	return (str);
 }
 
@@ -45,12 +30,9 @@ char	*ft_freebuff(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	str = malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
+	str = malloc(sizeof(char) * (ft_strlen(buffer) - i));
 	if (!str)
-	{
-		free(str);
 		return (NULL);
-	}
 	i++;
 	j = 0;
 	while (buffer[i])
@@ -64,16 +46,13 @@ char	*ft_readndfree(char *str, char *buf)
 {
 	char	*temp;
 
-	temp = NULL;
 	if (!str)
 	{
-		str = malloc(sizeof(char) * 1);
+		str = malloc(1);
 		if (!str)
 			return (NULL);
 		str[0] = '\0';
 	}
-	if (!buf)
-		return (str);
 	temp = ft_strjoin(str, buf);
 	free(str);
 	return (temp);
@@ -90,10 +69,16 @@ char	*read_buffer(int fd, char *buffer, char *temp)
 		if (bytes_read < 0)
 		{
 			free(temp);
+			free(buffer);
 			return (NULL);
 		}
 		temp[bytes_read] = '\0';
 		buffer = ft_readndfree(buffer, temp);
+		if (!buffer)
+		{
+			free(temp);
+			return (NULL);
+		}
 	}
 	free(temp);
 	return (buffer);
@@ -112,7 +97,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
+		return (NULL);
 	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!temp)
 		return (NULL);
