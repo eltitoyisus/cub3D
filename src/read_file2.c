@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 17:10:45 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/22 12:12:30 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/22 12:38:17 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,6 @@ int	ft_count_words(const char *s, char c)
 		s++;
 	}
 	return (count);
-}
-
-int	process_config_line(char *clean_line, int fd, char *line)
-{
-	(void)fd;
-	(void)line;
-	if (ft_count_words(clean_line, ' ') != 2)
-		return (0);
-	if (clean_line[0] == 'F' || clean_line[0] == 'C')
-	{
-		if (!valid_rgb(clean_line))
-			return (0);
-	}
-	else if (!ft_strncmp(clean_line, "NO ", 3) || !ft_strncmp(clean_line, "SO ",
-			3) || !ft_strncmp(clean_line, "WE ", 3) || !ft_strncmp(clean_line,
-			"EA ", 3))
-	{
-		if (!valid_sprite(clean_line))
-			return (0);
-	}
-	else
-		return (0);
-	return (1);
 }
 
 int	is_config_line(char *line)

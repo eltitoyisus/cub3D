@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:43:44 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/22 12:14:57 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/22 12:40:58 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ int	process_file_lines(int fd, t_game *game, char *map_lines[1000],
 
 	(void)game;
 	init_parse_data(&data, fd, map_lines, config_lines);
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		if (!process_line_and_clean(&data, line))
 		{
@@ -93,6 +94,7 @@ int	process_file_lines(int fd, t_game *game, char *map_lines[1000],
 			return (0);
 		}
 		free(line);
+		line = get_next_line(fd);
 	}
 	get_next_line(-1);
 	return (data.map_count);
@@ -104,8 +106,12 @@ int	parse_file_content(int fd, t_game *game, char *map_lines[1000])
 	char	*config_lines[10];
 	int		i;
 
-	for (i = 0; i < 10; i++)
+	i = 0;
+	while (i < 10)
+	{
 		config_lines[i] = NULL;
+		i++;
+	}
 	map_count = process_file_lines(fd, game, map_lines, config_lines);
 	if (map_count <= 0)
 	{

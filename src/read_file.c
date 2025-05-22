@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:43:42 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/22 11:35:07 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/05/22 12:38:47 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,6 @@ int	build_game_map(t_game *game, char **map_lines, int map_count)
 	if (!init_game_map(game, map_lines, map_count, &max_width))
 		return (0);
 	if (!fill_game_map(game, map_lines, map_count, max_width))
-		return (0);
-	return (1);
-}
-
-int	validate_game_map(t_game *game)
-{
-	if (!find_player_position(game))
-		return (0);
-	if (!valid_map(game))
 		return (0);
 	return (1);
 }
