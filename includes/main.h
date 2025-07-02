@@ -41,6 +41,7 @@ int			valid_route(char *filename);
 int			valid_arg(char *filename);
 
 // VALID SPRITES
+int			valid_extension(char *path);
 int			valid_coordinate(char *coordinate);
 int			valid_folder(char *filename);
 int			valid_sprite(char *line);

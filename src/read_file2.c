@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 17:10:45 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/22 12:38:17 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/02 10:54:38 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,18 @@ int	ft_count_words(const char *s, char c)
 
 int	is_config_line(char *line)
 {
+	char	*trimmed;
+	int		result;
+
 	if (!line)
 		return (0);
-	if (line[0] == 'N' || line[0] == 'S' || line[0] == 'E' || line[0] == 'W'
-		|| line[0] == 'F' || line[0] == 'C')
-		return (1);
-	return (0);
+	trimmed = skip_white_spaces(line);
+	if (!trimmed || !*trimmed)
+		return (free(trimmed), 0);
+	result = (trimmed[0] == 'N' || trimmed[0] == 'S' || trimmed[0] == 'E'
+			|| trimmed[0] == 'W' || trimmed[0] == 'F' || trimmed[0] == 'C');
+	free(trimmed);
+	return (result);
 }
 
 int	is_valid_map_line(char *line)

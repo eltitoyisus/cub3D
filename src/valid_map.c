@@ -117,6 +117,7 @@ int	valid_map(t_game *game)
 	free_temp_grid(temp_grid, game->map.height);
 	if (map_breached)
 	{
+		printf("Invalid map type\n");
 		game->map.valid = 0;
 		return (0);
 	}

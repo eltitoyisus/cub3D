@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:38:20 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/20 17:36:19 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/02 10:55:51 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,17 @@ void	init_textures(t_mlx_game *game)
 	load_xpm(game, &game->we_tex, game->game->we_texture);
 	load_xpm(game, &game->ea_tex, game->game->ea_texture);
 	load_door(game);
+}
+
+int	valid_extension(char *path)
+{
+	char	*ext;
+
+	if (!path)
+		return (printf("Error: Path is NULL\n"), 0);
+	ext = ft_strrchr(path, '.');
+	if (ext && !ft_strcmp(ext, ".xpm"))
+		return (1);
+	return (printf("Error: Invalid file extension for '%s'. Expected .xpm\n",
+			path), 0);
 }

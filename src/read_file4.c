@@ -23,23 +23,27 @@ int	validate_game_map(t_game *game)
 
 int	process_config_line(char *clean_line, int fd, char *line)
 {
+	char	*trimmed;
+
 	(void)fd;
 	(void)line;
-	if (ft_count_words(clean_line, ' ') != 2)
-		return (0);
-	if (clean_line[0] == 'F' || clean_line[0] == 'C')
+	trimmed = clean_line;
+	while (*trimmed && (*trimmed == ' ' || *trimmed == '\t'))
+		trimmed++;
+	if (trimmed[0] == 'F' || trimmed[0] == 'C')
 	{
-		if (!valid_rgb(clean_line))
+		if (ft_count_words(trimmed, ' ') != 2)
+			return (printf("Error: Invalid RGB format\n"), 0);
+		if (!valid_rgb(trimmed))
 			return (0);
 	}
-	else if (!ft_strncmp(clean_line, "NO ", 3) || !ft_strncmp(clean_line, "SO ",
-			3) || !ft_strncmp(clean_line, "WE ", 3) || !ft_strncmp(clean_line,
-			"EA ", 3))
+	else if (!ft_strncmp(trimmed, "NO ", 3) || !ft_strncmp(trimmed, "SO ", 3)
+		|| !ft_strncmp(trimmed, "WE ", 3) || !ft_strncmp(trimmed, "EA ", 3))
 	{
-		if (!valid_sprite(clean_line))
+		if (!valid_sprite(trimmed))
 			return (0);
 	}
 	else
-		return (0);
+		return (printf("Error: Invalid configuration: %s\n", clean_line), 0);
 	return (1);
 }
