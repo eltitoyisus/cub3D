@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:43:42 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/22 12:38:47 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:52:03 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	init_game_map(t_game *game, char **map_lines, int map_count, int *max_width)
 			*max_width = len;
 		i++;
 	}
+	if (*max_width > 300 || map_count > 300)
+		return (printf("Error: Map dimensions cannot exceed 300\n"), 0);
 	game->map.height = map_count;
 	game->map.width = *max_width;
 	game->map.grid = malloc(sizeof(char *) * (map_count + 1));
@@ -95,7 +97,10 @@ int	build_game_map(t_game *game, char **map_lines, int map_count)
 	int	max_width;
 
 	if (!init_game_map(game, map_lines, map_count, &max_width))
+	{
+		free_map_lines(map_lines, map_count);
 		return (0);
+	}
 	if (!fill_game_map(game, map_lines, map_count, max_width))
 		return (0);
 	return (1);

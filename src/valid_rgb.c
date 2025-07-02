@@ -15,9 +15,25 @@
 int	valid_value(char *str)
 {
 	int	value;
+	int	i;
 
 	while (*str == ' ')
 		str++;
+	if (!*str)
+		return (0);
+	if (*str == '0' && *(str + 1) == '\0')
+		return (1);
+	if (*str == '0')
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	if (i > 3)
+		return (0);
 	value = ft_atoi(str);
 	if (value < 0 || value > 255)
 		return (0);

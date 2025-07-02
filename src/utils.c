@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:47:03 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/22 11:38:28 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:52:11 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,17 @@ void	free_temp_grid(char **temp_grid, int height)
 		i++;
 	}
 	free(temp_grid);
+}
+
+void	free_map_lines(char **map_lines, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		if (map_lines[i])
+			free(map_lines[i]);
+		i++;
+	}
 }
