@@ -21,6 +21,19 @@ int	validate_game_map(t_game *game)
 	return (1);
 }
 
+void	free_map_lines_partial(char **map_lines, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		if (map_lines[i])
+			free(map_lines[i]);
+		i++;
+	}
+}
+
 int	process_config_line(char *clean_line, int fd, char *line)
 {
 	char	*trimmed;

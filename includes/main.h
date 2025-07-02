@@ -71,6 +71,7 @@ int			is_config_line(char *line);
 int			is_valid_map_line(char *line);
 void		free_config_lines(char **config_lines, int count);
 int			save_config_line(t_config_data *data);
+void		free_map_lines_partial(char **map_lines, int count);
 int			build_game_map(t_game *game, char **map_lines, int map_count);
 int			ft_count_words(const char *s, char c);
 int			validate_game_map(t_game *game);

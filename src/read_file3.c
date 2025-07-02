@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:43:44 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/07/02 11:46:01 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:54:44 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ int	process_file_line(t_parse_data *data, char *line, char *clean)
 	}
 	else
 	{
+		if (data->map_count >= 300)
+		{
+			free_map_lines_partial(data->map_lines, data->map_count);
+			return (printf("Error: Map dimensions cannot exceed 300 lines\n"),
+				0);
+		}
 		data->map_lines[data->map_count++] = ft_strdup(clean);
 		return (1);
 	}
