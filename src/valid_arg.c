@@ -19,6 +19,7 @@ int	valid_ext(char *filename)
 	ext = ft_strrchr(filename, '.');
 	if (ext && !ft_strncmp(ext, ".cub", 5))
 		return (1);
+	printf("Error: Invalid file extension. Only .cub files are supported.\n");
 	return (0);
 }
 
@@ -26,12 +27,11 @@ int	valid_route(char *filename)
 {
 	if (!ft_strncmp(filename, "maps/", 5))
 		return (1);
+	printf("Error: Map files must be in the 'maps/' directory.\n");
 	return (0);
 }
 
 int	valid_arg(char *filename)
 {
-	if (valid_ext(filename) && valid_route(filename))
-		return (1);
-	return (0);
+	return (valid_ext(filename) && valid_route(filename));
 }
