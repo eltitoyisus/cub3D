@@ -35,6 +35,7 @@
 # include "main.h"
 
 // other libraries
+# include <X11/extensions/Xfixes.h>
 # include <fcntl.h>
 # include <math.h>
 # include <signal.h>

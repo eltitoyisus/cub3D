@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 00:02:59 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/20 17:35:22 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:30:44 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,12 @@ void	calculate_wall_distance_and_height(t_mlx_game *game)
 	else
 		game->ray.perp_wall_dist = (game->ray.map_y - game->ray.pos_y + (1
 					- game->ray.step_y) / 2) / game->ray.dir_y;
+	if (game->ray.perp_wall_dist < 0.1)
+		game->ray.perp_wall_dist = 0.1;
 	game->ray.line_height = (int)(HEIGHT / game->ray.perp_wall_dist);
 	game->ray.draw_start = -game->ray.line_height / 2 + HEIGHT / 2;
 	if (game->ray.draw_start < 0)
-		game->ray.draw_start = HEIGHT - WIDTH;
+		game->ray.draw_start = 0;
 	game->ray.draw_end = game->ray.line_height / 2 + HEIGHT / 2;
 	if (game->ray.draw_end >= HEIGHT)
 		game->ray.draw_end = HEIGHT - 1;
