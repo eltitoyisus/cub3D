@@ -40,6 +40,25 @@ int	valid_value(char *str)
 	return (1);
 }
 
+int	validate_rgb_values(char **values)
+{
+	int	i;
+	int	valid;
+
+	i = 0;
+	valid = 1;
+	while (values[i] && valid)
+	{
+		if (!valid_value(values[i]))
+		{
+			valid = 0;
+			printf("Invalid RGB value: %s\n", values[i]);
+		}
+		i++;
+	}
+	return (valid);
+}
+
 int	valid_rgb(char *line)
 {
 	char	**values;
@@ -54,17 +73,13 @@ int	valid_rgb(char *line)
 	i = 0;
 	while (values[i])
 		i++;
-	valid = (i == 3);
-	i = 0;
-	while (values[i] && valid)
+	if (i != 3)
 	{
-		if (!valid_value(values[i]))
-		{
-			valid = 0;
-			printf("Invalid RGB value: %s\n", values[i]);
-		}
-		i++;
+		printf("Error: RGB format must have exactly 3 values (got %d)\n", i);
+		free_arr(values);
+		return (0);
 	}
+	valid = validate_rgb_values(values);
 	free_arr(values);
 	return (valid);
 }

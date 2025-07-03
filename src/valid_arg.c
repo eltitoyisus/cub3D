@@ -23,15 +23,20 @@ int	valid_ext(char *filename)
 	return (0);
 }
 
-int	valid_route(char *filename)
+int	valid_file(char *filename)
 {
-	if (!ft_strncmp(filename, "maps/", 5))
-		return (1);
-	printf("Error: Map files must be in the 'maps/' directory.\n");
-	return (0);
+	int	file;
+
+	file = open(filename, O_RDONLY);
+	if (file == -1)
+	{
+		printf("Error: File doesnt exist\n");
+		return (close(file), 0);
+	}
+	return (close(file), 1);
 }
 
 int	valid_arg(char *filename)
 {
-	return (valid_ext(filename) && valid_route(filename));
+	return (valid_ext(filename) && valid_file(filename));
 }

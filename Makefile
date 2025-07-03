@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/07/03 09:18:48 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/07/03 14:27:48 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = $(SRC_DIR)main.c				\
 		$(SRC_DIR)handle_movement.c	\
 		$(SRC_DIR)handle_mouse.c	\
 		$(SRC_DIR)save_params.c		\
+		$(SRC_DIR)save_params2.c		\
 		$(SRC_DIR)read_file.c		\
 		$(SRC_DIR)read_file2.c		\
 		$(SRC_DIR)read_file3.c		\

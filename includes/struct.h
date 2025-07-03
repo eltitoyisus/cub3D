@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:27:02 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/21 13:23:03 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/03 14:30:18 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,13 @@ typedef struct s_texture
 	int			line_length;
 	int			endian;
 }				t_texture;
+
+typedef struct s_texture_args
+{
+	int			*has_tex;
+	char		*id;
+	char		**tex_ptr;
+}				t_texture_args;
 
 typedef struct s_ray
 {

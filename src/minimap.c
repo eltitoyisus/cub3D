@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:15:06 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/19 19:15:06 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/03 14:39:29 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,25 @@ int	minimap(t_mlx_game *game)
 {
 	int	map_size;
 	int	offset_x;
-	int	offset_y;
+	int	max_minimap_size;
+	int	size_x;
+	int	size_y;
 
 	if (!game->img.img_ptr || !game->img.addr)
 		return (1);
-	map_size = game->minimap.square_size;
+	max_minimap_size = 200;
+	size_x = max_minimap_size / game->map.width;
+	size_y = max_minimap_size / game->map.height;
+	if (size_x < size_y)
+		map_size = size_x;
+	else
+		map_size = size_y;
+	if (map_size < 1)
+		map_size = 1;
+	game->minimap.square_size = map_size;
 	offset_x = 10;
-	offset_y = 10;
 	render_minimap(game, map_size);
-	draw_player(game, offset_x + (int)(game->ray.pos_x * map_size), offset_y
+	draw_player(game, offset_x + (int)(game->ray.pos_x * map_size), 10
 		+ (int)(game->ray.pos_y * map_size));
 	return (0);
 }

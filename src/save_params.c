@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_params.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jramos-a <jramos-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:43:57 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/21 12:43:58 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/03 14:30:56 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,33 +40,6 @@ int	save_ceiling(t_game *game, char *line)
 	return (1);
 }
 
-int	save_rgb(t_game *game, char **lines)
-{
-	int	i;
-
-	if (!game || !lines)
-		return (0);
-	i = 0;
-	while (lines && lines[i])
-	{
-		if (lines[i] && *lines[i])
-		{
-			if (lines[i][0] == 'F')
-			{
-				if (!save_floor(game, lines[i]))
-					return (0);
-			}
-			else if (lines[i][0] == 'C')
-			{
-				if (!save_ceiling(game, lines[i]))
-					return (0);
-			}
-		}
-		i++;
-	}
-	return (1);
-}
-
 int	save_texture(t_game *game, char *line, char **texture_ptr)
 {
 	(void)game;
@@ -75,26 +48,53 @@ int	save_texture(t_game *game, char *line, char **texture_ptr)
 	return (1);
 }
 
+int	check_texture_line(t_game *game, char *line, int *flags, char ***textures)
+{
+	t_texture_args	args;
+
+	if (!line || ft_strlen(line) < 2)
+		return (1);
+	args.has_tex = &flags[0];
+	args.id = "NO";
+	args.tex_ptr = textures[0];
+	if (!process_texture(game, line, &args))
+		return (0);
+	args.has_tex = &flags[1];
+	args.id = "SO";
+	args.tex_ptr = textures[1];
+	if (!process_texture(game, line, &args))
+		return (0);
+	args.has_tex = &flags[2];
+	args.id = "WE";
+	args.tex_ptr = textures[2];
+	if (!process_texture(game, line, &args))
+		return (0);
+	args.has_tex = &flags[3];
+	args.id = "EA";
+	args.tex_ptr = textures[3];
+	if (!process_texture(game, line, &args))
+		return (0);
+	return (1);
+}
+
 int	save_textures(t_game *game, char **lines)
 {
-	int	i;
+	int		i;
+	int		flags[4];
+	char	**textures[4];
 
 	if (!game || !lines)
 		return (0);
 	i = 0;
+	ft_bzero(flags, sizeof(flags));
+	textures[0] = &game->no_texture;
+	textures[1] = &game->so_texture;
+	textures[2] = &game->we_texture;
+	textures[3] = &game->ea_texture;
 	while (lines && lines[i])
 	{
-		if (lines[i] && ft_strlen(lines[i]) >= 2)
-		{
-			if (lines[i][0] == 'N' && lines[i][1] == 'O')
-				save_texture(game, lines[i], &game->no_texture);
-			else if (lines[i][0] == 'S' && lines[i][1] == 'O')
-				save_texture(game, lines[i], &game->so_texture);
-			else if (lines[i][0] == 'W' && lines[i][1] == 'E')
-				save_texture(game, lines[i], &game->we_texture);
-			else if (lines[i][0] == 'E' && lines[i][1] == 'A')
-				save_texture(game, lines[i], &game->ea_texture);
-		}
+		if (!check_texture_line(game, lines[i], flags, textures))
+			return (0);
 		i++;
 	}
 	return (1);

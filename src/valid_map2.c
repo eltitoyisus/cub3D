@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 17:20:46 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/07/03 09:17:26 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/03 12:46:37 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,37 +52,3 @@ void	set_player(t_game *game, int x, int y, char dir)
 	game->map.player_pos.y = y;
 	game->map.player_dir = dir;
 }
-
-// int	find_player_position(t_game *game)
-// {
-// 	int		i;
-// 	char	**grid;
-// 	int		j;
-// 	int		player_count;
-
-// 	i = 0;
-// 	grid = game->map.grid;
-// 	player_count = 0;
-// 	if (!grid || game->map.height <= 0)
-// 		return (0);
-// 	while (i < game->map.height)
-// 	{
-// 		j = 0;
-// 		while (grid[i][j])
-// 		{
-// 			if (valid_player(grid[i][j]))
-// 			{
-// 				if (player_count == 0)
-// 					set_player(game, j, i, grid[i][j]);
-// 				player_count++;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	if (player_count == 0)
-// 		return (printf("Error: No player position found\n"), 0);
-// 	if (player_count > 1)
-// 		return (printf("Error: Multiple player positions found\n"), 0);
-// 	return (1);
-// }

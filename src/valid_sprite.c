@@ -24,11 +24,7 @@ int	valid_coordinate(char *coordinate)
 
 int	valid_folder(char *path)
 {
-	if (ft_strncmp(path, "./sprites/", 10) == 0 || ft_strncmp(path, "sprites/",
-			8) == 0)
-		return (1);
-	else
-		return (printf("Error: Invalid folder for path: %s\n", path), 0);
+	return (valid_file(path));
 }
 
 char	*extract_path(char *line, int start_idx)

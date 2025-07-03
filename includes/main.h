@@ -39,6 +39,7 @@ void		init_flood_context(t_flood_context *flood_context);
 int			valid_ext(char *filename);
 int			valid_route(char *filename);
 int			valid_arg(char *filename);
+int			valid_file(char *filename);
 
 // VALID SPRITES
 int			valid_extension(char *path);
@@ -91,6 +92,8 @@ int			save_ceiling(t_game *game, char *line);
 int			save_rgb(t_game *game, char **lines);
 int			save_textures(t_game *game, char **lines);
 int			save_params(t_game *game, char **lines);
+int			save_texture(t_game *game, char *line, char **texture_ptr);
+int			process_texture(t_game *game, char *line, t_texture_args *args);
 
 // PLAYER POS
 void		player_facing_north(t_game *game);
