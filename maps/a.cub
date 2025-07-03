@@ -1,7 +1,7 @@
 NO ./sprites/wood2.xpm
 EA ./sprites/wood2.xpm
 SO ./sprites/wood2.xpm
-WE ./sprites/door_close.xpm
+WE ./sprites/wood2.xpm
 
 C 255,0,255
 F 0,255,0

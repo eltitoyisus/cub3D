@@ -40,22 +40,6 @@ void	map_cpy(char **src, char ***dest, int width, int height)
 	(*dest)[height] = NULL;
 }
 
-void	flood_fill(t_game *game, t_flood_context *ctx, int x, int y)
-{
-	if (x < 0 || x >= ctx->width || y < 0 || y >= ctx->height)
-	{
-		*(ctx->breached) = 1;
-		return ;
-	}
-	if (ctx->grid[y][x] == '1' || ctx->grid[y][x] == 'V')
-		return ;
-	ctx->grid[y][x] = 'V';
-	flood_fill(game, ctx, x + 1, y);
-	flood_fill(game, ctx, x - 1, y);
-	flood_fill(game, ctx, x, y + 1);
-	flood_fill(game, ctx, x, y - 1);
-}
-
 int	is_valid_map_structure(t_game *game)
 {
 	if (!game->map.grid || game->map.width <= 0 || game->map.height <= 0)
@@ -99,22 +83,19 @@ char	**create_temp_grid(t_game *game, int height)
 
 int	valid_map(t_game *game)
 {
-	char			**temp_grid;
-	int				map_breached;
-	t_flood_context	ctx;
+	int	map_breached;
 
 	map_breached = 0;
 	if (!is_valid_map_structure(game))
 		return (0);
-	temp_grid = create_temp_grid(game, game->map.height);
-	if (!temp_grid)
+	if (!check_map_boundary(game))
+	{
+		printf("Error: Map not properly enclosed by walls\n");
+		game->map.valid = 0;
 		return (0);
-	ctx.grid = temp_grid;
-	ctx.width = game->map.width;
-	ctx.height = game->map.height;
-	ctx.breached = &map_breached;
-	flood_fill(game, &ctx, game->map.player_pos.x, game->map.player_pos.y);
-	free_temp_grid(temp_grid, game->map.height);
+	}
+	if (!perform_flood_fill(game, &map_breached))
+		return (0);
 	if (map_breached)
 	{
 		printf("Invalid map type\n");

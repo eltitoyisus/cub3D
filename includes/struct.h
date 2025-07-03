@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:27:02 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/07/03 14:30:18 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/03 21:29:44 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,16 @@ typedef struct s_texture
 	int			endian;
 }				t_texture;
 
+typedef struct s_input
+{
+	int			move_forward;
+	int			move_backward;
+	int			move_left;
+	int			move_right;
+	int			turn_left;
+	int			turn_right;
+}				t_input;
+
 typedef struct s_texture_args
 {
 	int			*has_tex;
@@ -156,6 +166,7 @@ typedef struct s_mlx_game
 	int			door_toggle;
 	t_ray		ray;
 	t_minimap	minimap;
+	t_input		input;
 }				t_mlx_game;
 
 #endif

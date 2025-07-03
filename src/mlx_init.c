@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 09:12:28 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/07/02 18:48:05 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:58:16 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	render_frame(void *param)
 	if (!game || !game->mlx)
 		return (1);
 	handle_doors(game);
+	process_input(game);
 	game->img.img_ptr = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->img.img_ptr)
 		return (1);
@@ -84,6 +85,7 @@ void	ft_destroy(t_mlx_game *mlx_game)
 
 int	ft_init(t_mlx_game *game)
 {
+	init_movement(game);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (1);
@@ -97,7 +99,8 @@ int	ft_init(t_mlx_game *game)
 	game->img.img_ptr = NULL;
 	game->img.addr = NULL;
 	init_textures(game);
-	mlx_hook(game->win, 2, 1L << 0, key_handle, game);
+	mlx_hook(game->win, 2, 1L << 0, key_press, game);
+	mlx_hook(game->win, 3, 1L << 1, key_release, game);
 	mlx_hook(game->win, 6, 1L << 6, handle_mouse, game);
 	mlx_hook(game->win, 17, 0, handle_exit, game);
 	mlx_loop_hook(game->mlx, render_frame, game);

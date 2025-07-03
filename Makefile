@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/07/03 14:27:48 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/07/03 21:56:38 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,18 @@ SRC = $(SRC_DIR)main.c				\
 		$(SRC_DIR)valid_rgb.c		\
 		$(SRC_DIR)valid_map.c		\
 		$(SRC_DIR)valid_map2.c		\
+		$(SRC_DIR)boundaries.c		\
+		$(SRC_DIR)valid_map_utils.c	\
 		$(SRC_DIR)player_pos.c		\
 		$(SRC_DIR)utils.c			\
+		$(SRC_DIR)key_hook.c		\
 		$(SRC_DIR)init_struct.c		\
 		$(SRC_DIR)init_game.c		\
 		$(SRC_DIR)init_parse.c		\
 		$(SRC_DIR)handle_movement.c	\
 		$(SRC_DIR)handle_mouse.c	\
 		$(SRC_DIR)save_params.c		\
-		$(SRC_DIR)save_params2.c		\
+		$(SRC_DIR)save_params2.c	\
 		$(SRC_DIR)read_file.c		\
 		$(SRC_DIR)read_file2.c		\
 		$(SRC_DIR)read_file3.c		\

@@ -60,6 +60,11 @@ void		set_player(t_game *game, int x, int y, char dir);
 int			find_player_position(t_game *game);
 void		map_cpy(char **src, char ***dest, int width, int height);
 int			valid_map(t_game *game);
+int			check_map_boundary(t_game *game);
+int			perform_flood_fill(t_game *game, int *map_breached);
+char		**create_temp_grid(t_game *game, int height);
+void		inverse_flood_fill(t_flood_context *ctx, int x, int y,
+				int *has_breach);
 
 // READ FILE
 int			handle_line(char *line, char *clean, char **cfg, int *data[4]);
@@ -113,6 +118,10 @@ int			handle_exit(void *param);
 int			ft_look(int keycode, t_game *game);
 int			ft_movement(int keycode, t_game *game);
 int			key_handle(int keycode, void *param);
+void		process_input(t_mlx_game *game);
+int			key_press(int keycode, t_mlx_game *game);
+int			key_release(int keycode, t_mlx_game *game);
+void		init_movement(t_mlx_game *game);
 
 // PLAYER MOVEMENT
 int			is_wall(t_map *map, double x, double y);
