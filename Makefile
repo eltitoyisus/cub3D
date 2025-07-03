@@ -6,13 +6,13 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/05/22 12:48:54 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/07/03 09:18:48 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 FLAGS = -Werror -Wall -Wextra -Ilibft -Iminilibx -g3
-MLXFLAGS = -Lminilibx -lmlx -lXext -lX11 -lm
+MLXFLAGS = -Lminilibx -lmlx -lXext -lX11 -lXfixes -lm
 NAME = cub3D
 RM = rm -rf
 SRC_DIR = src/
@@ -42,6 +42,7 @@ SRC = $(SRC_DIR)main.c				\
 		$(SRC_DIR)minimap.c			\
 		$(SRC_DIR)draw_map.c		\
 		$(SRC_DIR)draw_map2.c		\
+		$(SRC_DIR)valid_player.c	\
 		$(SRC_DIR)door.c
 
 OBJS = $(SRC:.c=.o)
