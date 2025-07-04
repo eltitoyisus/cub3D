@@ -29,7 +29,10 @@ void	free_map_lines_partial(char **map_lines, int count)
 	while (i < count)
 	{
 		if (map_lines[i])
+		{
 			free(map_lines[i]);
+			map_lines[i] = NULL;
+		}
 		i++;
 	}
 }
