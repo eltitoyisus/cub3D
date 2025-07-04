@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:43:44 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/07/02 15:54:44 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:01:07 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	process_file_lines(int fd, t_game *game, char *map_lines[1000],
 		{
 			get_next_line(-1);
 			free(line);
+			free_map_lines_partial(map_lines, data.map_count);
 			return (0);
 		}
 		free(line);
@@ -127,6 +128,7 @@ int	parse_file_content(int fd, t_game *game, char *map_lines[1000])
 	if (!save_params(game, config_lines))
 	{
 		free_config_lines(config_lines, 10);
+		free_map_lines_partial(map_lines, map_count);
 		return (-1);
 	}
 	free_config_lines(config_lines, 10);
