@@ -12,15 +12,6 @@
 
 #include "../includes/main.h"
 
-void	load_door(t_mlx_game *game)
-{
-	load_xpm(game, &game->door_close, "./sprites/door_close.xpm");
-	if (game->door_close.img_ptr)
-		printf("Door closed\n");
-	else
-		printf("Fail load texture\n");
-}
-
 int	is_near_door(t_game *game, int map_x, int map_y)
 {
 	double	distance;
@@ -41,10 +32,31 @@ bool	check_door_at_position(t_mlx_game *game, int x, int y)
 		{
 			game->map.grid[y][x] = '0';
 			game->door_toggle = true;
+			game->door_pos_x = x;
+			game->door_pos_y = y;
 			return (true);
 		}
 	}
 	return (false);
+}
+
+void	restore_door_if_far(t_mlx_game *game)
+{
+	if (game->door_toggle && game->door_pos_x >= 0 && game->door_pos_y >= 0
+		&& game->door_pos_x < game->map.width
+		&& game->door_pos_y < game->map.height)
+	{
+		if (!is_near_door(game->game, game->door_pos_x, game->door_pos_y))
+		{
+			if (game->map.grid[game->door_pos_y][game->door_pos_x] == '0')
+			{
+				game->map.grid[game->door_pos_y][game->door_pos_x] = 'D';
+			}
+			game->door_toggle = false;
+			game->door_pos_x = -1;
+			game->door_pos_y = -1;
+		}
+	}
 }
 
 void	check_door_interaction(t_mlx_game *game)
@@ -55,6 +67,7 @@ void	check_door_interaction(t_mlx_game *game)
 	int		player_x;
 	int		player_y;
 
+	restore_door_if_far(game);
 	found_nearby_door = false;
 	if (!game || !game->game)
 		return ;
@@ -72,8 +85,6 @@ void	check_door_interaction(t_mlx_game *game)
 		}
 		y++;
 	}
-	if (!found_nearby_door)
-		game->door_toggle = false;
 }
 
 int	handle_doors(t_mlx_game *game)

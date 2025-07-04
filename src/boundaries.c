@@ -78,8 +78,9 @@ int	check_map_boundary(t_game *game)
 		j = 0;
 		while (j < game->map.width)
 		{
-			if ((grid[i][j] == '0' || valid_player(grid[i][j]))
-				&& !is_boundary_valid(game, i, j))
+			if ((grid[i][j] == '0' || grid[i][j] == 'D'
+					|| valid_player(grid[i][j])) && !is_boundary_valid(game, i,
+					j))
 				return (0);
 			j++;
 		}

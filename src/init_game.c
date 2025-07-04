@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:56:22 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/05/20 16:56:22 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/04 13:09:06 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ void	init_mlx_game(t_mlx_game *mlx_game)
 	mlx_game->mlx = NULL;
 	mlx_game->win = NULL;
 	mlx_game->img.img_ptr = NULL;
-	mlx_game->door_toggle = 0;
+	mlx_game->door_toggle = false;
+	mlx_game->door_pos_x = -1;
+	mlx_game->door_pos_y = -1;
 	init_texture(&mlx_game->no_tex);
 	init_texture(&mlx_game->so_tex);
 	init_texture(&mlx_game->we_tex);

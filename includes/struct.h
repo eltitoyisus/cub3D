@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 11:27:02 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/07/03 21:29:44 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/04 13:17:19 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,8 @@ typedef struct s_mlx_game
 	t_texture	door_open;
 	t_texture	door_close;
 	int			door_toggle;
+	int			door_pos_x;
+	int			door_pos_y;
 	t_ray		ray;
 	t_minimap	minimap;
 	t_input		input;
