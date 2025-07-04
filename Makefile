@@ -6,7 +6,7 @@
 #    By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 20:02:00 by jramos-a          #+#    #+#              #
-#    Updated: 2025/07/03 21:56:38 by jramos-a         ###   ########.fr        #
+#    Updated: 2025/07/04 17:32:47 by jramos-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC = $(SRC_DIR)main.c				\
 		$(SRC_DIR)draw_map.c		\
 		$(SRC_DIR)draw_map2.c		\
 		$(SRC_DIR)valid_player.c	\
+		$(SRC_DIR)error.c			\
 		$(SRC_DIR)door.c
 
 OBJS = $(SRC:.c=.o)

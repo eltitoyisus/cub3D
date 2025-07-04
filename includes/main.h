@@ -175,4 +175,6 @@ void		draw_map_element(t_mlx_game *game, int x, int y, int map_size);
 int			render_minimap(t_mlx_game *game, int map_size);
 int			minimap(t_mlx_game *game);
 
+void		error(char *str);
+
 #endif

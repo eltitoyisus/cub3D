@@ -59,7 +59,11 @@ int	save_rgb(t_game *game, char **lines)
 			return (0);
 		i++;
 	}
-	return (1);
+	if (!has_floor)
+		printf("Error: Missing floor (F) color definition\n");
+	if (!has_ceiling)
+		printf("Error: Missing ceiling (C) color definition\n");
+	return (has_floor && has_ceiling);
 }
 
 int	process_texture(t_game *game, char *line, t_texture_args *args)

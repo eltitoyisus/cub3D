@@ -6,7 +6,7 @@
 /*   By: jramos-a <jramos-a@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:43:57 by jramos-a          #+#    #+#             */
-/*   Updated: 2025/07/03 14:30:56 by jramos-a         ###   ########.fr       */
+/*   Updated: 2025/07/04 17:22:02 by jramos-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,15 @@ int	save_textures(t_game *game, char **lines)
 	textures[2] = &game->we_texture;
 	textures[3] = &game->ea_texture;
 	while (lines && lines[i])
-	{
-		if (!check_texture_line(game, lines[i], flags, textures))
+		if (!check_texture_line(game, lines[i++], flags, textures))
 			return (0);
-		i++;
-	}
-	return (1);
+	if (!flags[0])
+		printf("Error: Missing NO (north) texture\n");
+	if (!flags[1])
+		printf("Error: Missing SO (south) texture\n");
+	if (!flags[2])
+		printf("Error: Missing WE (west) texture\n");
+	if (!flags[3])
+		printf("Error: Missing EA (east) texture\n");
+	return (flags[0] && flags[1] && flags[2] && flags[3]);
 }
